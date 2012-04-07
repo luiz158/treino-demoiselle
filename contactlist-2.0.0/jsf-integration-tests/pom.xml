@@ -40,7 +40,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.gov.frameworkdemoiselle.sample</groupId>
-	<artifactId>contactlist-jsf-integration-tests</artifactId>
+	<artifactId>contactlist-jsf-integration-tests-2.0</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>

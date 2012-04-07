@@ -5,20 +5,33 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.gov.sample.demoiselle</groupId>
-	<artifactId>auction5</artifactId>
+	<artifactId>auction5cdi</artifactId>
 	<version>1.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>Auction5</name>
 	<description>A sample Web application using Demoiselle Framework with JPA capabilities.</description>
 	<url>http://demoiselle-samp.sourceforge.net/auction5/</url>
-
+<!-- 
 	<parent>
 		<groupId>org.jboss.weld.examples</groupId>
 		<artifactId>weld-examples-parent</artifactId>
 		<version>1.0.1-CR2</version>
 	</parent>
-
+-->
+<!-- 
+	<parent>
+		<groupId>org.jboss.weld.examples</groupId>
+		<artifactId>weld-examples-parent</artifactId>
+		<version>1.1.6.Final</version>
+	</parent>
+-->	
+	<parent>
+		<groupId>br.gov.frameworkdemoiselle</groupId>
+		<artifactId>demoiselle-jsf-parent</artifactId>
+		<version>2.2.1</version>
+	</parent>
+	
 	<properties>
 		<encoding.default>UTF-8</encoding.default>
 		<htdocs.url>scp://shell.sourceforge.net/home/groups/d/de/demoiselle-samp/htdocs</htdocs.url>
@@ -59,6 +72,16 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
+		</repository>
+		<repository>
+			<id>demoiselle.sourceforge.net</id>
+			<name>Demoiselle Maven Repository</name>
+			<url>http://demoiselle.sourceforge.net/repository/release</url>
+		</repository>
+		<repository>
+			<id>demoiselle.snapshot.sourceforge.net</id>
+			<name>Demoiselle Maven Repository Snapshot</name>
+			<url>http://demoiselle.sourceforge.net/repository/snapshot</url>
 		</repository>
 	</repositories>
 
@@ -106,12 +129,27 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>br.gov.frameworkdemoiselle</groupId>
+			<artifactId>demoiselle-jpa</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.frameworkdemoiselle.component</groupId>
+			<artifactId>demoiselle-shiro</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.gov.frameworkdemoiselle.component</groupId>
+			<artifactId>demoiselle-validation</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.5</version>
+<!-- 			<version>4.8.1</version>  -->
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
@@ -121,8 +159,10 @@
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>jsr250-api</artifactId>
+			<version>1.0</version>
 		</dependency>
 
+<!-- 
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -132,6 +172,7 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 		</dependency>
+-->		
 	</dependencies>
 
 	<build>
@@ -179,7 +220,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.5</version>
+<!-- 				<version>2.7</version>  -->
 				<configuration>
 					<links>
 						<link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
@@ -202,7 +243,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>2.0.1</version>
+<!-- 				<version>2.0.1</version>   -->
 				<configuration>
 					<inputEncoding>${encoding.default}</inputEncoding>
 					<outputEncoding>${encoding.default}</outputEncoding>
@@ -214,7 +255,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-5</version>
+<!-- 				<version>2.2-beta-5</version>   -->
 				<configuration>
 					<outputDirectory>${build.directory}/assembly</outputDirectory>
 					<finalName>${artifactId}-${version}</finalName>

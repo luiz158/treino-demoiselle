@@ -4,15 +4,22 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.gov.demoiselle</groupId>
-	<artifactId>escola</artifactId>
+	<artifactId>escola-1</artifactId>
 	<version>2.0.0</version>
 	<packaging>war</packaging>
-
+<!-- 
 	<parent>
 		<groupId>br.gov.frameworkdemoiselle</groupId>
 		<artifactId>demoiselle-jsf-parent</artifactId>
 		<version>2.0.0-BETA1-SNAPSHOT</version>
 	</parent>
+-->
+	<parent>
+		<groupId>br.gov.frameworkdemoiselle</groupId>
+		<artifactId>demoiselle-jsf-parent</artifactId>
+		<version>2.2.1</version>
+	</parent>
+
 
 	<name>Escola</name>
 	<description>Aplicação Escola</description>

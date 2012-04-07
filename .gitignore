@@ -1,7 +1,7 @@
-/.classpath
-/.project
-/.settings
-/.target
+.classpath
+.project
+.settings
+target
 /build
 /dist
 /bin
@@ -12,3 +12,4 @@
 .svn
 .ant-targets-*
 lixo
+

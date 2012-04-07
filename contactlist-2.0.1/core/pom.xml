@@ -39,7 +39,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.gov.frameworkdemoiselle.sample</groupId>
-	<artifactId>contactlist-core</artifactId>
+	<artifactId>contactlist-core-2.0.1</artifactId>
 	<packaging>jar</packaging>
 	<version>2.0.1</version>
 

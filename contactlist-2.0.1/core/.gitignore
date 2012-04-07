@@ -11,4 +11,6 @@ target
 /obf
 .svn
 .ant-targets-*
+database
+lixo
 
