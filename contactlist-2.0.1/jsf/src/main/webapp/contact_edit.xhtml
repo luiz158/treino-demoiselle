@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{contactEditMB.insert}"
+						rendered="#{!contactEditMB.updateMode}" ajax="false"
+						disabled="#{!securityContext.hasPermission('contact', 'insert')}" />
+					<p:commandButton value="#{messages['button.save']}" action="#{contactEditMB.update}"
+						rendered="#{contactEditMB.updateMode}" ajax="false"
+						disabled="#{!securityContext.hasPermission('contact', 'update')}" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{contactEditMB.updateMode}" type="button" immediate="true" ajax="false"
+						disabled="#{!securityContext.hasPermission('contact', 'delete')}" />
+					<p:confirmDialog message="#{messages['label.confirm.delete.contact']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{contactEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['contact.label.contact']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fields" columns="3">
+					<h:outputLabel value="#{messages['contact.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{contactEditMB.bean.id}" />
+					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['contact.label.name']}: " for="name" styleClass="text-input" />
+					<h:inputText id="name" value="#{contactEditMB.bean.name}" style="width:200px"
+						title="#{messages['contact.alt.name']}" />
+					<p:message for="name" />
+
+					<h:outputLabel value="#{messages['contact.label.cpf']}: " for="cpf" styleClass="text-input" />
+					<p:inputMask mask="999.999.999-99" id="cpf" value="#{contactEditMB.bean.cpf}"
+						title="#{messages['contact.alt.cpf']}" />
+					<p:message for="cpf" />
+
+					<h:outputLabel value="#{messages['contact.label.birthday']}: " for="birthday" styleClass="text-input" />
+					<p:calendar id="birthday" value="#{contactEditMB.bean.birthday}"
+						pattern="#{messages['contact.label.birthday.date.pattern']}" navigator="true" showButtonPanel="true"
+						locale="#{currentLocale}" title="#{messages['contact.alt.birthday']}" />
+					<p:message for="birthday" />
+
+					<h:outputLabel value="#{messages['contact.label.email']}: " for="email" styleClass="text-input" />
+					<h:inputText id="email" value="#{contactEditMB.bean.email}" title="#{messages['contact.alt.email']}" />
+					<p:message for="email" />
+				</h:panelGrid>
+			</p:fieldset>
+
+			<br />
+			<p:fieldset legend="#{messages['contact.label.phones']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsPhone" columns="1">
+					<p:commandButton value="Add..." action="#{contactEditMB.addPhone}" update="listPhone"
+						disabled="#{!securityContext.hasPermission('contact', 'update')}" />
+				</h:panelGrid>
+				<p:dataTable id="listPhone" var="phone" value="#{contactEditMB.phones}" rowIndexVar="index">
+					<p:column>
+						<f:facet name="header">#{messages['contact.label.number']}</f:facet>
+						<h:inputText value="#{phone.number}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">#{messages['contact.label.type']}</f:facet>
+						<h:selectOneMenu id="phoneType" value="#{phone.type}">
+							<f:selectItems value="#{contactEditMB.phoneTypes}" />
+						</h:selectOneMenu>
+					</p:column>
+					<p:column>
+						<f:facet name="header">#{messages['label.action']}</f:facet>
+						<p:commandButton value="#{messages['button.delete']}" action="#{contactEditMB.deletePhone}" ajax="false"
+							disabled="#{!securityContext.hasPermission('contact', 'update')}" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+			<br />
+		</h:form>
+	</ui:define>
+
+</ui:composition>

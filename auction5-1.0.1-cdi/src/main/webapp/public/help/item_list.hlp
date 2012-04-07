@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Product help</title>
+</head>
+<body>
+<b>This is a help page for Product</b>
+<br/>
+Select de category and click in the image for filter.
+<br/>
+For insert a new product, click on New Item link from toolbar.
+<br/>
+For edit or delete an item, use the last two collumns.
+</body>
+</html>

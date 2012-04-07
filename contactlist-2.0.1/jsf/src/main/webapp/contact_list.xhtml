@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}" image="ui-icon-document" action="#{contactListMB.getNextView}"
+						ajax="false" disabled="#{!securityContext.hasPermission('contact', 'insert')}" />
+
+					<p:commandButton title="#{messages['button.delete']}" image="ui-icon-trash" onclick="confirmation.show()"
+						type="button" immediate="true" ajax="false" disabled="#{!securityContext.hasPermission('contact', 'delete')}" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete.contact']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{contactListMB.deleteSelection}" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="list" var="bean" value="#{contactListMB.dataModel}" paginator="true" lazy="true"
+				rows="#{contactListMB.pagination.pageSize}" pageLinks="#{paginationConfig.maxPageLinks}"
+				rendered="#{securityContext.hasPermission('contact', 'view')}">
+				<f:facet name="header">#{messages['contact.list.table.title']}</f:facet>
+				<p:column style="width:1%;">
+					<h:selectBooleanCheckbox value="#{contactListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
+				<p:column style="width:5%;">
+					<f:facet name="header">#{messages['contact.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{messages['contact.label.name']}</f:facet>
+					<h:commandLink action="#{contactListMB.getNextView}">
+						<h:outputText value="#{bean.name}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{messages['contact.label.email']}</f:facet>
+					<h:commandLink action="#{contactListMB.getNextView}">
+						<h:outputText value="#{bean.email}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{messages['contact.label.cpf']}</f:facet>
+					<h:commandLink action="#{contactListMB.getNextView}">
+						<h:outputText value="#{bean.cpf}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{messages['contact.label.birthday']}</f:facet>
+					<h:commandLink action="#{contactListMB.getNextView}">
+						<h:outputText value="#{bean.birthday}">
+							<f:convertDateTime type="date" dateStyle="medium" pattern="#{messages['contact.label.birthday.date.pattern']}"
+								locale="#{currentLocale}" />
+						</h:outputText>
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich" xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	<ui:composition template="/public/templates/default.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<demoiselle:useJs all="true"/>
+
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+					<div>
+					
+						<fieldset>
+							<legend>
+								<h:outputLabel for="Name" styleClass="outputLabel" value="Category Name" />
+							</legend>
+							<t:outputText id="Name" value="#{categoryMB.category.name}" />
+						</fieldset>
+						
+						<fieldset>
+							<h:selectBooleanCheckbox id="Active" tabindex="2" styleClass="inputText"
+								value="#{categoryMB.category.active}" title="" disabled="true"/>
+							<h:outputText value="Active"/>
+						</fieldset>
+					
+						<fieldset>
+							<legend>
+								<h:outputLabel for="parentCategory" styleClass="outputLabel" value="Parent Category" />
+							</legend>
+							<t:outputText id="parentCategory"
+								value="#{categoryMB.category.parentCategory.name}"
+								rendered="#{categoryMB.category.parentCategory != null}"/>
+						</fieldset>
+
+					</div>
+				</rich:panel>
+
+				<div style="padding: 10px; text-align: right;">
+					<t:commandButton title="OK" tabindex="3" action="#{categoryMB.deleteConfirmed}"
+						styleClass="botaoComun" value="OK" id="F2" />
+					<t:commandButton title="Cancel" tabindex="4" action="#{categoryMB.cancel}"
+						styleClass="botaoComun" value="Cancel" id="F3" />
+				</div>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<ui:composition template="/public/templates/default.xhtml">
+
+	<ui:define name="body">
+	
+		<h:form enctype="multipart/form-data" >
+		
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel  value="Aluno"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{alunoMB.aluno.id != null}" >
+					<h:commandLink value="Alterar" action="#{alunoMB.alterar}" title="Alterar Usuário"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup  rendered="#{alunoMB.aluno.id == null}">
+					<h:commandLink value="Inserir" action="#{alunoMB.inserir}" title="Inserir novo Usuário"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{alunoMB.cancelar}" title="Cancelar Operação"/>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<h:outputLabel value="INFORMAÇÕES PESSOAIS"/>					
+				<table summary="Formulário para edição de Aluno">
+					<tr>
+						<td>
+							<h:outputLabel value="Nome" for="aluno_nome" />							
+						</td>
+						<td>
+							<h:outputLabel value="Pai" for="aluno_pai" />
+						</td>
+						<td>
+							<h:outputLabel value="Mãe" for="aluno_mae" />
+						</td>
+						<td>
+							<h:outputLabel value="Nascimento" for="aluno_nascimento" />
+						</td>
+						<td>							
+							<h:outputLabel value="Foto" for="aluno_foto" />
+						</td>
+					</tr>
+					<tr>
+						<td>							
+							<t:inputText id="aluno_nome" styleClass="inputText" value="#{alunoMB.aluno.nome}" required="true" tabindex="1"/>
+							<t:message for="campoNomeAluno" />
+						</td>
+						<td>
+							<t:inputText id="aluno_pai" styleClass="inputText" value="#{alunoMB.aluno.pai}" required="true" tabindex="2"/>
+							<t:message for="campoNomePai" />
+						</td>
+						<td>
+							<t:inputText id="aluno_mae" styleClass="inputText" value="#{alunoMB.aluno.mae}" required="true" tabindex="3"/>
+							<t:message for="campoNomeMae" />
+						</td>
+						<td>
+							<rich:calendar id="aluno_nascimento" styleClass="richCalendarStyleClass" value="#{alunoMB.aluno.nascimento}" required="true" inputClass="richCalendarInputTextClass" buttonClass="richCalendarButtonClass" datePattern="dd/MM/yyyy" tabindex="4"/>
+							<t:message for="campoNomeNascimento" />
+						</td>
+						<td>
+							<t:graphicImage width="100" value="#{alunoMB.foto}" /> 
+							<t:inputFileUpload id="aluno_foto" styleClass="inputText" accept="image/*" value="#{alunoMB.uploadFoto}" storage="file" tabindex="5" />
+						</td>
+					</tr>
+				</table>
+				<h:outputLabel value="CONTROLE DE ACESSO"/>
+				<table summary="Formulário para edição de Usuário">
+					<tr>
+						<td>
+							<h:outputLabel value="Cpf" for="usuario_cpf" />
+						</td>
+						<td>
+							<h:outputLabel value="Login" for="usuario_login" />
+						</td>
+						<td>
+							<h:outputLabel value="Senha" for="usuario_senha"/>
+						</td>
+						<td>
+							<h:outputLabel value="Tema" for="usuario_tema" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<t:inputText id="usuario_cpf" styleClass="inputText" value="#{alunoMB.aluno.usuario.cpf}" tabindex="6" />
+						</td>
+						<td>
+							<t:inputText id="usuario_login" styleClass="inputText" value="#{alunoMB.aluno.usuario.login}"  tabindex="7"/>
+						</td>
+						<td>
+							<t:inputSecret id="usuario_senha" styleClass="inputText" value="#{alunoMB.aluno.usuario.senha}" tabindex="8"/>
+						</td>
+						<td>
+						
+							<t:selectOneMenu id="usuario_tema" value="#{alunoMB.aluno.usuario.skin}" tabindex="10">
+								<f:selectItem itemLabel="" itemValue="" />
+								<t:selectItems value="{#escolaMB.skins}"  var="element" itemLabel="#{element.name}" itemValue="#{element.name}"/>
+							</t:selectOneMenu>
+						</td>
+					</tr>
+				</table>				
+			</rich:panel>
+
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass" rendered="#{alunoMB.aluno.id != null}">
+				<rich:tabPanel id="painel" styleClass="richTabPanelStyleClass"
+					headerClass="richTabPanelHeaderClass"
+					tabClass="richTabPanelTabClass"
+					activeTabClass="richTabPanelActiveTabClass"
+					inactiveTabClass="richTabPanelInactiveTabClass"
+					disabledTabClass="richTabPanelDisabledTabClass"
+					contentClass="richTabPanelContentClass" 
+					switchType="client"
+					binding="#{alunoMB.painel}">
+					
+					<rich:tab id="tabEndereco" label="Endereços" >			
+						
+
+						<table width="100%" class="richDataTableStyleClass" summary="Formulário para Edição de Endereços">
+							<tr>
+								<td>									
+									<h:outputLabel value="Logradouro" for="endereco_logradouro"/>									
+								</td>
+								<td>
+									<h:outputLabel value="Número" for="endereco_numero" />
+								</td>
+								<td>
+									<h:outputLabel value="Complemento" for="endereco_complemento" />
+								</td>
+								<td>
+									<h:outputLabel value="Bairro" for="endereco_bairro" />
+								</td>
+								<td>
+									<h:outputLabel value="Município" for="endereco_municipio" />
+								</td>
+								<td colspan="2" >
+									<h:outputLabel value="Cep" for="endereco_cep" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:inputText id="endereco_logradouro" styleClass="inputText" value="#{alunoMB.detalheEndereco.logradouro}" title="Logradouro" tabindex="101"/>
+								</td>
+								<td>
+									<h:inputText id="endereco_numero" styleClass="inputText" value="#{alunoMB.detalheEndereco.numero}"  tabindex="102"/>
+								</td>
+								<td>
+									<h:inputText id="endereco_complemento" styleClass="inputText" value="#{alunoMB.detalheEndereco.complemento}" tabindex="103"/>
+								</td>
+								<td>
+									<h:inputText id="endereco_bairro" styleClass="inputText" value="#{alunoMB.detalheEndereco.bairro}" tabindex="104"/>
+								</td>
+								<td>
+									<h:inputText id="endereco_municipio" styleClass="inputText" value="#{alunoMB.detalheEndereco.municipio}" tabindex="105"/>
+								</td>
+								<td>
+									<h:inputText id="endereco_cep" styleClass="inputText" value="#{alunoMB.detalheEndereco.cep}" tabindex="106"/>
+								</td>
+								<td>
+									<h:commandButton action="#{alunoMB.incluirEndereco}" value="Incluir" rendered="#{alunoMB.detalheEndereco.id == null}" styleClass="inputText" tabindex="107" title="Incluir Endereço"/> 
+									<h:commandButton action="#{alunoMB.alterarEndereco}" value="Alterar"	rendered="#{alunoMB.detalheEndereco.id != null}" styleClass="inputText" tabindex="108" title="Altera Endereço"/>
+								</td>
+							</tr>
+						</table>
+
+						<div>
+							<rich:dataTable width="100%"
+								styleClass="richDataTableStyleClass"
+								value="#{alunoMB.aluno.listaEndereco}"
+								headerClass="richDataTableHeaderClass"
+								rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+								columnClasses="richDataTableColumnClass" var="endereco"
+								rowKeyVar="row">
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Logradouro" />
+								</f:facet>
+								<t:outputText value="#{endereco.logradouro}" />
+							</rich:column>
+
+							<rich:column width="1%">
+								<f:facet name="header">
+									<t:outputText value="Número" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{endereco.numero}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Complemento" />
+								</f:facet>
+								<t:outputText styleClass="outputText"
+									value="#{endereco.complemento}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Bairro" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{endereco.bairro}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="CEP" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{endereco.cep}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.preAlterar}" title="Alterar Endereco">
+									<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Editar" title="Alterar Endereço" />
+									<f:setPropertyActionListener target="#{alunoMB.detalheEndereco}" value="#{endereco}" />
+								</a4j:commandLink>
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.removerEndereco}" title="Excluir Endereço">
+									<t:graphicImage value="/private/resources/images/delete.png" border="0" width="15"  alt="Excluir" title="Excluir Endereço"/>
+									<f:setPropertyActionListener target="#{alunoMB.detalheEndereco}" value="#{endereco}" />
+								</a4j:commandLink>
+							</rich:column>
+						</rich:dataTable>
+					</div>
+					</rich:tab>
+					<rich:tab id="tabTelefone" label="Telefones" name="tabTelefone">
+
+
+						<table width="100%" class="richDataTableStyleClass"   summary="Edição de Telefones">
+							<tr>
+								<td>
+									<h:outputLabel value="Número" for="telefone_numero" />
+								</td>
+								<td colspan="2">
+									<h:outputLabel value="Tipo" for="telefone_tipo" />
+								</td>								
+							</tr>
+							<tr>
+								<td>
+									<h:inputText id="telefone_numero" styleClass="inputText" value="#{alunoMB.detalheTelefone.numero}" title="Informe o número do telefone" tabindex="201" />
+								</td>
+								<td>
+									<h:selectOneMenu id="telefone_tipo" value="#{alunoMB.detalheTelefone.tipo}" title="Selecione o tipo do telefone" tabindex="202">
+										<f:selectItem itemLabel="" itemValue="" />
+										<f:selectItem itemLabel="Residencial" itemValue="Residencial" />
+										<f:selectItem itemLabel="Comercial" itemValue="Comercial" />
+										<f:selectItem itemLabel="Celular" itemValue="Celular" />
+									</h:selectOneMenu>
+								</td>
+								<td>
+									<h:commandButton action="#{alunoMB.incluirTelefone}" value="Incluir" rendered="#{alunoMB.detalheTelefone.id == null}" styleClass="inputText" /> 
+									<h:commandButton action="#{alunoMB.alterarTelefone}" value="Alterar" rendered="#{alunoMB.detalheTelefone.id != null}" styleClass="inputText" />
+								</td>
+							</tr>
+						</table>
+
+						<div>
+							<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+							value="#{alunoMB.aluno.listaTelefone}"
+							headerClass="richDataTableHeaderClass" rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+							columnClasses="richDataTableColumnClass" var="telefone"
+							rowKeyVar="row" summary="Lista de Telefone">
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Logradouro" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{telefone.numero}" />
+							</rich:column>
+
+							<rich:column width="1%">
+								<f:facet name="header">
+									<t:outputText value="Número" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{telefone.tipo}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.preAlterar}" title="Alterar Telefone">
+									<t:graphicImage value="/private/resources/images/edit.png" width="15" alt="Alterar" border="0" title="Alterar Telefone" />
+									<f:setPropertyActionListener target="#{alunoMB.detalheTelefone}" value="#{telefone}" />
+								</a4j:commandLink>
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Excluir" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.removerTelefone}" title="Excluir Telefone">
+									<t:graphicImage value="/private/resources/images/delete.png" alt="Excluir" width="15" border="Excluir Telefone" />
+									<f:setPropertyActionListener
+										target="#{alunoMB.detalheTelefone}" value="#{telefone}" />
+								</a4j:commandLink>
+							</rich:column>
+
+
+						</rich:dataTable></div>
+
+					</rich:tab>
+					<rich:tab id="tabEmail" label="Emails" name="tabEmail">
+
+						<table width="100%" class="richDataTableStyleClass"
+							summary="Edição de E-mails">
+							<tr>
+								<td colspan="2">
+									<h:outputLabel value="Endereço" for="email_endereco" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<t:inputText id="email_endereco" styleClass="inputText" value="#{alunoMB.detalheEmail.endereco}" tabindex="301" title="Endereço 	ônico" />
+								</td>
+								<td>
+									<h:commandButton action="#{alunoMB.incluirEmail}" value="Incluir" rendered="#{alunoMB.detalheEmail.id == null}" styleClass="inputText" /> 
+									<h:commandButton action="#{alunoMB.alterarEmail}" value="Alterar" rendered="#{alunoMB.detalheEmail.id != null}"	styleClass="inputText" />
+								</td>
+							</tr>
+						</table>
+						<rich:dataTable width="100%"
+							styleClass="richDataTableStyleClass"
+							value="#{alunoMB.aluno.listaEmail}"
+							headerClass="richDataTableHeaderClass"
+							rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+							columnClasses="richDataTableColumnClass" var="email"
+							rowKeyVar="row">
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Emails" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{email.endereco}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.preAlterar}">
+									<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar Email"/>
+									<f:setPropertyActionListener target="#{alunoMB.detalheEmail}" value="#{email}" />
+								</a4j:commandLink>
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.removerEmail}">
+									<t:graphicImage value="/private/resources/images/delete.png" width="18" border="0" alt="Excluir" title="Excluir E-mail" />
+									<f:setPropertyActionListener target="#{alunoMB.detalheEmail}" value="#{email}" />
+								</a4j:commandLink>
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
+					
+					<rich:tab id="tabTurma" label="Turmas" name="tabTurma">
+
+						<table width="100%" class="richDataTableStyleClass" summary="Edição de Turmas">
+							<tr>
+								<td colspan="2"><h:outputLabel value="Turma" for="turma_nome" /></td>
+							</tr>
+							<tr>
+								<td>
+									<h:selectOneMenu id="turma_nome" value="#{alunoMB.detalheTurma.id}" tabindex="401" title="Seleciona uma turma">
+										<f:selectItem itemLabel="" itemValue="" />
+										<t:selectItems value="#{turmaMB.listaTurmas}" var="turma" itemLabel="#{turma.nome}" itemValue="#{turma.id}" />
+									</h:selectOneMenu>
+								</td>
+								<td>
+									<h:commandButton action="#{alunoMB.incluirTurma}" value="Incluir" styleClass="inputText" /> 
+								</td>
+							</tr>
+						</table>
+
+						<div>
+							<rich:dataTable width="100%"
+							styleClass="richDataTableStyleClass"
+							value="#{alunoMB.aluno.listaTurma}"
+							headerClass="richDataTableHeaderClass"
+							rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+							columnClasses="richDataTableColumnClass" var="turma"
+							rowKeyVar="row" summary="Lista de turmas">
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Turma" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{turma.nome}" />
+							</rich:column>
+
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Excluir" />
+								</f:facet>
+								<a4j:commandLink action="#{alunoMB.removerTurma}">
+									<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" alt="Excluir" title="Excluir Turma" />
+									<f:setPropertyActionListener target="#{alunoMB.detalheTurma}" value="#{turma}" />
+								</a4j:commandLink>
+							</rich:column>
+						</rich:dataTable>
+						</div>
+					</rich:tab>
+					
+				</rich:tabPanel>
+				
+			
+			</rich:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

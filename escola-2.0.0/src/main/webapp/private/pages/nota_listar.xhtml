@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	
+<ui:composition template="/public/templates/default.xhtml">
+
+	<ui:define name="body">
+		<h:form>			
+		
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Nota" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{notaMB.preInserir}" title="Incluir Nota" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{notaMB.listar}" title="Listar Nota"/>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+		
+		
+		<rich:panel  styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+		</rich:panel>
+		
+		<rich:panel  styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+		<rich:dataTable  width="100%" styleClass="richDataTableStyleClass" value="#{notaMB.listaNota}" headerClass="richDataTableHeaderClass" rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond" columnClasses="richDataTableColumnClass" var="element" rowKeyVar="row" id="elementList">
+		
+		<rich:column >
+		<f:facet  name="header">
+		<t:outputText  value=" "/>
+		</f:facet>
+		<t:outputText  styleClass="outputText" value="#{row+1}"/>
+		</rich:column>
+		
+		<rich:column rendered="#{!usuarioMB.isAluno}">
+		<f:facet  name="header">
+		<t:outputText  value="ALUNO"/>
+		</f:facet>
+		<t:outputText  styleClass="outputText" value="#{element.aluno.nome}"/>
+		</rich:column>
+		
+		<rich:column >
+		<f:facet  name="header">
+		<t:outputText  value="DISCIPLINA"/>
+		</f:facet>
+		<t:outputText  styleClass="outputText" value="#{element.disciplina.nome}"/>
+		</rich:column>
+		
+		<rich:column >
+		<f:facet  name="header">
+		<t:outputText  value="NOTA"/>
+		</f:facet>
+		<t:outputText  styleClass="outputText" value="#{element.valor}"/>
+		</rich:column>
+		
+		<rich:column rendered="#{!usuarioMB.isAluno}">
+		<f:facet  name="header">
+		<t:outputText  value="Alterar"/>
+		</f:facet>
+		<a4j:commandLink action="#{notaMB.preAlterar}">
+			<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar Nota"/>
+			<f:setPropertyActionListener  target="#{notaMB.nota}" value="#{element}"/>
+		</a4j:commandLink>
+		</rich:column>
+		
+		<rich:column rendered="#{!usuarioMB.isAluno}" >
+		<f:facet  name="header">
+		<t:outputText  value="Excluir"/>
+		</f:facet>
+		<a4j:commandLink action="#{notaMB.preExcluir}">
+			<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" alt="Excluir" title="Excluir Nota"/>
+			<f:setPropertyActionListener  target="#{notaMB.nota}" value="#{element}"/>
+		</a4j:commandLink>
+		</rich:column>
+		</rich:dataTable>
+		</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

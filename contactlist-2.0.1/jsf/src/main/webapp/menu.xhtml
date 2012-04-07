@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:form>
+		<p:menubar rendered="#{securityContext.loggedIn}">
+			<p:submenu label="#{messages['menu.contacts']}">
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/contact_list.jsf"
+					rendered="#{securityContext.hasPermission('contact', 'view')}"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/contact_edit.jsf"
+					rendered="#{securityContext.hasPermission('contact', 'insert')}"></p:menuitem>
+			</p:submenu>
+
+			<p:submenu label="#{messages['menu.language']}">
+				<p:menuitem value="#{messages['menu.menuitem.language-portuguese']}" action="#{locales.setPortuguese}" ajax="false"
+					icon="br-flag-icon" />
+				<p:menuitem value="#{messages['menu.menuitem.language-english']}" action="#{locales.setEnglish}" ajax="false"
+					icon="us-flag-icon" />
+			</p:submenu>
+
+			<p:menuitem value="#{messages['menu.menuitem.audit']}" url="/audit_list.jsf"
+				rendered="#{securityContext.hasPermission('audit', 'view')}" />
+			<p:menuitem value="#{messages['menu.menuitem.quit']}" action="#{securityContext.logout}" />
+		</p:menubar>
+	</h:form>
+
+</ui:composition>

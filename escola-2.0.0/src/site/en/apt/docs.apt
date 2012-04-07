@@ -1,0 +1,123 @@
+~~Demoiselle Sample
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Sample is a set of open source Java EE project samples using
+~~the Demoiselle Framework
+~~
+~~Demoiselle Sample is released under the terms of the GPL license 3
+~~http://www.gnu.org/licenses/gpl.html  GPL License 3
+~~
+~~This file is part of Demoiselle Sample.
+~~
+~~Demoiselle Sample is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU General Public License as published by
+~~the Free Software Foundation version 3.
+~~
+~~Demoiselle Sample is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU General Public License for more details.
+~~
+~~You should have received a copy of the GNU General Public License
+~~along with Demoiselle - Sample.  If not, see <http://www.gnu.org/licenses/>
+  
+                                    ------
+                                    Documentation
+                                    
+Documentation
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+* {Installing}
+
+  Requirements: Eclipse and the following plugins: Aspectj, Maven and a SVN Client.
+  
+  Download the project from the following repository:
+  
++----------------------------------------------------------------------------------------+
+https://demoiselle.svn.sourceforge.net/svnroot/demoiselle/sample/trunk/escola
++----------------------------------------------------------------------------------------+
+
+** {Setting up the database}
+
+  Enclosed to the project, there is the <<conf>> folder which contains the following files:
+  <<<banco_escola.properties>>> and <<<banco_escola.script>>>. Copy both files to the <USER_HOME>/escoladb folder.
+
+** {Setting up the control access for Tomcat 6.0}
+
+  Enclosed to the project, there is the <<conf>> folder which contains the following file:
+  <<<tomcat-users.xml>>>. Replace the same file found at Tomcat server by it. 
+  Note that inside this file you will find both accounts and its respective passwords.
+
++----------------------------------------------------------------------------------------+
+<tomcat-users>
+  <role rolename="role_aluno"/>
+  <role rolename="role_professor"/>
+  <role rolename="role_administrador"/>
+  
+  <user username="aluno" password="aluno" roles="role_aluno"/>
+  <user username="professor" password="professor" roles="role_professor"/>
+  <user username="admin" password="admin" roles="role_administrador,role_professor"/>
+</tomcat-users>
++----------------------------------------------------------------------------------------+
+
+* {Reference Architecture}
+
+	The application architecture follow the <<Demoiselle Framework>> patterns.
+
+[images/arquitetura.png]
+
+	Architecture extensions  will be presented in the following sections.
+	
+** Use Case
+	
+[images/casodeuso.png]	
+
+** Dependencies
+
+	The figure bellow shows the main dependencies between the application 
+	and both the framework and respective components.
+
+[images/componentes.png] Arquitetura Geral
+
+* Persistence Layer 
+
+	The framework utilizes two persistence mechanisms: Hibernate and JDBC.
+	
+[images/camada_persistencia.png]
+
+**	Functionalities
+
+	<<Pagination: >> The data retrieval methods implemented in DAO utilize the pagination 
+	specification of Demiselles Core Module.
+
+	<<Filters:>> The data retrieval method of DAO objects  utilizes the demoiselle-hibernate-filter component.
+
+* 	Business Layer
+	
+[images/camada_negocio.png]
+
+**	Functionalities
+
+	<<Authorization:>> The methods of BusinessController classes utilize the demoiselle-authorization component 
+	in order to permit their execution.
+	
+
+* 	View Layer
+	
+[images/camada_visao.png]
+
+**	Functionalities
+
+	<<Reports generation:>> The demoiselle-report component is utilized to generate 
+	either PDT or ODT application reports.
+	
+	<<Pagination:>> The pagination mechanism of the persistence layer has integration with JSF pagination components.
+	
+	<<Cookies management:>> Under the menu bar, it is shown information on the last user login. 
+	This information is stored through cookies utilizing the demoiselle-jsf-ui component. 
+	
+	<<Skin Swapping:>> The demoiselle-jsf-ui is utilized to dynamically change the application themes.
+

@@ -1,0 +1,85 @@
+~~Demoiselle Framework
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Framework is an open source Java EE library designed to accelerate
+~~the development of transactional database Web applications.
+~~
+~~Demoiselle Framework is released under the terms of the LGPL license 3
+~~http://www.gnu.org/licenses/lgpl.html  LGPL License 3
+~~
+~~This file is part of Demoiselle Framework.
+~~
+~~Demoiselle Framework is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU Lesser General Public License 3 as published by
+~~the Free Software Foundation.
+~~
+~~Demoiselle Framework is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU Lesser General Public License for more details.
+~~
+~~You should have received a copy of the GNU Lesser General Public License
+~~along with Demoiselle Framework.  If not, see <http://www.gnu.org/licenses/>.
+                                    ------
+                                    Documentação
+
+Documentação
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+* {Instalação}
+
+  Para instalar o projeto é necessário baixar o projeto no repositório. Em seguida é necessário 
+  adicionar o projeto no servidor.
+  
+  No blog do demoiselle: http://blog.frameworkdemoiselle.gov.br você pode encontrar posts que ensinam 
+  passo a passo como instalar o contactlist em sua IDE.  
+
+
+* {ManagedBeans}
+
+  Os beans se encontram no pacote <<view>>. Para criar um bean, basta criar uma classe
+  simples adicionar as propriedades e seus métodos get/set públicos e anotar a classe com
+  <<br.gov.frameworkdemoiselle.stereotype.ViewController>>.
+  
+  No exemplo abaixo vemos a classe e uma anotação a mais: <@PreviousView>, que trabalha com
+  a regra de navegação. Para habilitar o comportamento de navegação é preciso herdar o comportamento
+  de <<br.gov.frameworkdemoiselle.template.AbstractEditPageBean>>.
+
++----------------------------------------------------------------------------------------+  
+  @ViewController
+  @PreviousView(CONTACT_LIST)
+  public class ContactEditMB extends AbstractEditPageBean{
+  	...
+  }
++----------------------------------------------------------------------------------------+
+
+* {Templates}
+
+  Uma prática adotada nesta aplicação foi criar alguns templates para henriquecer o comportamento
+  dos managed beans. Para isto foram disponibilizados exemplos no pacote <template>.
+  
+  Também foram disponibilizados templates de tela(facelets/xhtml) disponíveis na pasta: <webapp/template>.
+  
+* {Conversores} 
+
+  No pacote <<converters>> existe um exemplo de conversor para a entidade <Contact>.
+  
+* {Configuração para web/jsf}
+
+  O arquivo faces-config não precisou de nenhuma configuração, estando totalmente em branco.
+  No web.xml foi necessário apenas a configuração básica de jsf:
+
++----------------------------------------------------------------------------------------+
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
++----------------------------------------------------------------------------------------+

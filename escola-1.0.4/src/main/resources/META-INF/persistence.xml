@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="contactlist-ds" transaction-type="RESOURCE_LOCAL">
+		<class>br.gov.serpro.escola.pojo.Aluno</class>
+		<class>br.gov.serpro.escola.pojo.Usuario</class>
+		<class>br.gov.serpro.escola.pojo.Professor</class>
+		<class>br.gov.serpro.escola.pojo.Telefone</class>
+		<class>br.gov.serpro.escola.pojo.Disciplina</class>
+		<class>br.gov.serpro.escola.pojo.Email</class>
+		<class>br.gov.serpro.escola.pojo.Endereco</class>
+		<class>br.gov.serpro.escola.pojo.Nota</class>
+		<class>br.gov.serpro.escola.pojo.Turma</class>
+		<class>br.gov.serpro.escola.pojo.Funcionario</class>
+		
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost:9001/banco_escola" />
+
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.order_updates" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

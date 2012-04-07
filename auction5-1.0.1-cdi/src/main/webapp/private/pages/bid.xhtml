@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:t="http://myfaces.apache.org/tomahawk"
+	  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	  xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	  
+	<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+		
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<div>
+					<fieldset>
+						<legend>Product</legend>
+						<t:outputText value="#{bidMB.auction.item.description}" />
+					</fieldset>
+					<fieldset>
+						<legend>Category</legend>
+						<t:outputText value="#{bidMB.auction.item.category.name}" />
+					</fieldset>
+					<fieldset>
+						<legend>Current Price</legend>
+						<t:outputText value="#{bidMB.auction.bestBidOrStartingPrice}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+						</t:outputText>
+					</fieldset>		
+					<c:if test="#{not empty bidMB.auction.deadline}">
+						<fieldset>
+							<legend>Time Left</legend>
+							<t:outputText styleClass="outputText" value="#{bidMB.auction.deadline}">
+								<f:converter converterId="timeLeftConverter"/>
+							</t:outputText>
+							<t:outputText value=" ("/>
+							<t:outputText value="#{bidMB.auction.deadline}">
+								<f:convertDateTime type="both"/>
+							</t:outputText>
+							<t:outputText value=")"/>
+						</fieldset>
+					</c:if>
+					<fieldset>
+						<legend>
+							<h:outputLabel for="bid_value" styleClass="outputLabel" value="Bid Value" />
+						</legend>
+						<t:inputText id="bid_value" styleClass="inputText" value="#{bidMB.amount}" required="true" />
+						<t:outputText value=" "/>
+						<h:commandButton action="#{bidMB.actionBid}" value="Place Bid" styleClass="inputText" title="Place Bid" />				
+					</fieldset>		
+				</div>
+			</rich:panel>
+			
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					rows="#{bidMB.rows}" value="#{bidMB.listLastBids}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="auctionsTable" summary="List of the last bids">
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Bid Date/Time" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.timestamp}">
+							<f:convertDateTime type="both"/>
+						</t:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Bid Value" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.amount}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+						</t:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="User" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.login}"/>
+					</rich:column>					
+				</rich:dataTable>
+			</rich:panel>
+			
+		</h:form>
+	</ui:define>
+	</ui:composition>
+	
+</html>

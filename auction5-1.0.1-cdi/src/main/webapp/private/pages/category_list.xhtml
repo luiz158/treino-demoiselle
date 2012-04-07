@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich" xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	<ui:composition template="/public/templates/default.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<demoiselle:useJs all="true"/>
+
+				<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+	                <rich:toolBarGroup itemSeparator="square">
+	                    <h:commandLink value="Add New Category" action="#{categoryMB.newCategory}" title="Insert a new category" />
+	                </rich:toolBarGroup>
+	                <rich:toolBarGroup location="right">
+	                   <demoiselle:help/>
+	                </rich:toolBarGroup>
+	            </rich:toolBar>
+
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+					<rich:dataTable width="100%" summary="Categories list"
+						styleClass="richDataTableStyleClass" value="#{categoryMB.listCategories}"
+						headerClass="richDataTableHeaderClass"
+						rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+						columnClasses="richDataTableColumnClass" var="element" rowKeyVar="row"
+						id="elementList">
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="ID" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.id}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="Name" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="Active" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.active}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="Parent Category" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.parentCategory.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="Edit" />
+							</f:facet>
+							<a4j:commandLink title="Edit" tabindex="4" value="" action="#{categoryMB.edit}">
+								<t:graphicImage value="/private/resources/images/edit.png" tabindex="5"
+                                    width="15" alt="Edit" title="Edit" border="0" />
+								<f:setPropertyActionListener target="#{categoryMB.category}" value="#{element}" />
+							</a4j:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="Delete" />
+							</f:facet>
+							<a4j:commandLink title="Delete" tabindex="5" value="" action="#{categoryMB.delete}">
+								<t:graphicImage value="/private/resources/images/delete.png" tabindex="5"
+                                    width="15" alt="Delete" title="Delete" border="0" />
+								<f:setPropertyActionListener target="#{categoryMB.category}" value="#{element}" />
+							</a4j:commandLink>
+						</rich:column>
+					</rich:dataTable>
+				</rich:panel>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

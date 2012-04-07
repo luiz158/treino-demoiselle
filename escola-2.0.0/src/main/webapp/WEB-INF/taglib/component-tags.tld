@@ -1,0 +1,1459 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>serpro</short-name>
+	<uri>http://www.frameworkdemoiselle.gov.br</uri>
+	<tag>
+		<name>tamanhoValidator</name>
+		<tag-class>
+			br.gov.component.jsf.validators.tag.LengthValidatorTag
+		</tag-class>
+		<attribute>
+			<name>length</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Tamanho m�ximo de caracteres que o campo pode conter
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>useSkin</name>
+		<tag-class>br.gov.component.jsf.skin.UseSkinTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<name>useJs</name>
+		<tag-class>br.gov.component.jsf.js.UseJsTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>all</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' ou 'false'. Se for definido
+				como 'true', todos os javascripts contidos no componente
+				ser�o importados na p�gina. O valor padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>hotKeys</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' ou 'false'. Se for definido
+				como 'true', o javascript que habilita a funcionalidade
+				de teclas de atalho ser� importado na p�gina. O valor
+				padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>browserBackButton</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' ou 'false'. Se for definido
+				como 'true', o javascript que desabilita as a��es dos
+				bot�es do browser (voltar, avan�ar, atualizar etc.) ser�
+				importado na p�gina. O valor padr�o � 'false'.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>chooseSkin</name>
+		<tag-class>br.gov.component.jsf.skin.UIChooseSkinTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>removeSkins</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Lista dos nomes das skins, separados por v�rgula (','),
+				contidos no arquivo de configura��o de skins, que n�o se
+				deseja mostrar no componente, ou seja, ser�o mostrados
+				todas as skins contidas no arquivo de configura��o menos
+				as declaradas neste atributo.
+			</description>
+		</attribute>
+		<attribute>
+			<name>limitSkinsToList</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Lista dos nomes das skins, separados por v�rgula (','),
+				contidos no arquivo de configura��o de skins, que se
+				deseja mostrar no componente.
+			</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do componente.
+				Se n�o for definido, o css da skin atual ser� carregado,
+				precisando para isso, que o componente 'useSkin' da lib
+				'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o estilo do componente.</description>
+		</attribute>
+		<attribute>
+			<name>headerStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do cabe�alho
+				do componente. Se n�o for definido, o css da skin atual
+				ser� carregado, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>headerStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do cabe�alho do componente.
+			</description>
+		</attribute>
+		<attribute>
+			<name>bodyStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do corpo do
+				componente. Se n�o for definido, o css da skin atual
+				ser� carregado, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>bodyStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do corpo do componente.
+			</description>
+		</attribute>
+		<attribute>
+			<name>imageStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo das imagens do
+				componente. Se n�o for definido, o css da skin atual
+				ser� carregado, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>imageStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo das imagens do componente.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>locationBar</name>
+		<tag-class>
+			br.gov.component.jsf.locationbar.UILocationBarTag
+		</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o nome que representar� o location da p�gina onde
+				o componente foi declarado. Esse ser� o nome que
+				aparecer� na p�gina para o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>level</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o n�vel em que a p�gina se encontra, ou seja, o
+				n�vel 0 significa que a p�gina � a root da navega��o;
+				n�vel 1 significa que a p�gina � a segunda na hierarquia
+				e assim por diante. Obs.: Podem existir v�rias p�ginas
+				com o mesmo n�vel dentro da aplica��o, inclusive v�rias
+				p�ginas roots.
+			</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o estilo do componente.</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do componente.
+				Se n�o for definido, o css da skin atual ser� carregado,
+				precisando para isso, que o componente 'useSkin' da lib
+				'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>lov</name>
+		<tag-class>br.gov.component.jsf.lov.UILovTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o ID do componente.</description>
+		</attribute>
+		<attribute>
+			<name>displayValue</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Especifica a vari�vel do ManagedBean que ser� preenchida
+				com o valor do item escolhido, obedecendo o �ndice da
+				coluna que foi escolhida como Display.
+			</description>
+		</attribute>
+		<attribute>
+			<name>keyValue</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Especifica a vari�vel do ManagedBean que ser� preenchida
+				com a chave do item escolhido, obedecendo o �ndice da
+				coluna que foi escolhida como Key.
+			</description>
+		</attribute>
+		<attribute>
+			<name>serviceName</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Nome do servi�o declarado no arquivo de configura��es
+				'ApplicationConfigurator.properties'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupKeyColumnNumber</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o �ndice da coluna que ser� utilizada como
+				'chave'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupDisplayColumnNumber</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o �ndice da coluna da qual ser� abstra�do o valor
+				a ser mostrado na tela ap�s a escolha do item.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupColumnNames</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define os nomes das colunas que ser�o mostrados no
+				cabe�alho da tabela da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>lovType</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'selectone' e 'selectmany'. O tipo
+				'selectone' especifica que a Lov s� permitir� a escolha
+				de um item por vez. O tipo 'selectmany' especifica que a
+				Lov permitir� a escolha de v�rios itens de uma s� vez.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o ID do campo texto que ser� preenchido com o
+				valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o ID do bot�o que ser� respons�vel por chamar o
+				popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupWidth</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define a largura do popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupHeight</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define a altura do popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupCentralized</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				ser� centralizado na tela do usu�rio ou n�o. O padr�o �
+				'true'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupResizable</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lov poder� ser redimensionado. O padr�o �
+				'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupShowScroll</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lov mostrar� as barras de rolagem do
+				navegador. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupShowStatus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lov mostrar� a barra de status do
+				navegador. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupShowLocationBar</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lovmostrar� a barra de localiza��o do
+				navegador. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupShowMenuBar</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lov mostrar� a barra de menus do
+				navegador. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupShowDirectoriesButtons</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define se o popup
+				de pesquisa da Lov mostrar� os bot�es de diret�rios do
+				navegador. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTitle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' e 'false'. Define o t�tulo do
+				popup de pesquisa da Lov. O padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupPositionX</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define a posi��o, em pixels, no eixo horizontal, onde o
+				popup aparecer� na tela.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupPositionY</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define a posi��o, em pixels, no eixo vertical, onde o
+				popup aparecer� na tela.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do componente de chamada do popup da Lov
+				como um todo, que inclui o campo escondido, o campo
+				texto e o bot�o.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do componente
+				de chamada do popup da Lov como um todo, que inclui o
+				campo escondido, o campo texto e o bot�o. Se n�o for
+				definido, o css da skin atual ser� carregado
+				automaticamente, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do campo texto que ser� preenchido com o
+				valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do campo texto
+				que ser� preenchido com o valor do item escolhido. Se
+				n�o for definido, o css da skin atual ser� carregado
+				automaticamente, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do bot�o que ser� respons�vel por chamar
+				o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do bot�o que
+				ser� respons�vel por chamar o popup de pesquisa da Lov.
+				Se n�o for definido, o css da skin atual ser� carregado
+				automaticamente, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonValue</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o label do bot�o que ser� respons�vel por chamar
+				o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnmouseover</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseover do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnmouseout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseout do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnmousedown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmousedown do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnmouseup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseup do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnchange</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onchange do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnfocus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnblur</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onblur do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnkeypress</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeypress do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnkeydown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeydown do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerInputOnkeyup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeyup do campo texto que ser�
+				preenchido com o valor do item escolhido.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnmouseover</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseover do bot�o que ser�
+				respons�vel por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnmouseout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseout do bot�o que ser�
+				respons�vel por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnmousedown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmousedown do bot�o que ser�
+				respons�vel por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnmouseup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseup do bot�o que ser�
+				respons�vel por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnfocus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do bot�o que ser� respons�vel
+				por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>callerButtonOnblur</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onblur do bot�o que ser� respons�vel
+				por chamar o popup de pesquisa da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupMapValue</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Mapeamento feito para um HashMap encontrado no
+				ManagedBean que ser� preenchido automaticamente com o(s)
+				item(s) escolhido(s) na Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupAction</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				M�todo do ManagedBean que ser� executado na a��o de
+				escolha do(s) item(s).
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupHideKeyColumn</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'true' ou 'false'. Se for definido
+				como 'true' a coluna que foi definida como 'chave' n�o
+				ser� mostrada ao usu�rio. O valor padr�o � 'false'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFiltersFieldsId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define os IDs dos campos de input, separados por v�rgula
+				(,), que ser�o utilizados no filtro da pesquisa. Obs.: �
+				necess�rio que a quantidade de IDs, a quantidade de
+				Labels e a quantidade de ParamsNames seja a mesma.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFiltersFieldsLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define os Labels dos campos de input, separados por
+				v�rgula (,), que ser�o utilizados no filtro da pesquisa.
+				Obs.: � necess�rio que a quantidade de IDs, a quantidade
+				de Labels e a quantidade de ParamsNames seja a mesma.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFiltersFieldsParamsNames</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define as chaves do HashMap, separadas por v�rgula (,),
+				que ser� enviado para a aplica��o EJB, com os valores
+				entrados pelo usu�rio nos campos de filtro de pesquisa.
+				Obs.: � necess�rio que a quantidade de IDs, a quantidade
+				de Labels e a quantidade de ParamsNames seja a mesma.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupCancelButtonLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o Label do bot�o cancelar. Se n�o for definido,
+				ser� utilizado o valor 'Cancelar'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupNewButtonLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o Label do bot�o novo. Se n�o for definido, ser�
+				utilizado o valor 'Novo'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupSearchButtonLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o Label do bot�o pesquisar. Se n�o for definido,
+				ser� utilizado o valor 'Pesquisar'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupCancelButtonId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o ID do bot�o cancelar.</description>
+		</attribute>
+		<attribute>
+			<name>popupNewButtonId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o ID do bot�o novo.</description>
+		</attribute>
+		<attribute>
+			<name>popupSearchButtonId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o ID do bot�o pesquisar.</description>
+		</attribute>
+		<attribute>
+			<name>popupCancelButtonHotKey</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'f1' a 'f12'. Define a tecla de
+				atalho que ser� utilizada para ativar o bot�o cancelar.
+				Obs.: Para isso o javascript hotKeys dever� ser
+				habilitado atrav�s do componente 'useJs' da lib
+				'component'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupNewButtonHotKey</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'f1' a 'f12'. Define a tecla de
+				atalho que ser� utilizada para ativar o bot�o novo.
+				Obs.: Para isso o javascript hotKeys dever� ser
+				habilitado atrav�s do componente 'useJs' da lib
+				'component'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupSearchButtonHotKey</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Poss�veis valores: 'f1' a 'f12'. Define a tecla de
+				atalho que ser� utilizada para ativar o bot�o pesquisar.
+				Obs.: Para isso o javascript hotKeys dever� ser
+				habilitado atrav�s do componente 'useJs' da lib
+				'component'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupButtonsStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo dos bot�es de a��o (Cancelar, Novo e
+				Pesquisar).
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupButtonsStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo dos bot�es de
+				a��o do componente (Cancelar, Novo e Pesquisar). Se n�o
+				for definido, o css da skin atual ser� carregado,
+				precisando para isso, que o componente 'useSkin' da lib
+				'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFilterPanelStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do painel onde se encontram os campos de
+				filtros de pesquisa.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFilterPanelStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do painel onde
+				se encontram os campos de filtros de pesquisa. Se n�o
+				for definido, o css da skin atual ser� carregado,
+				precisando para isso, que o componente 'useSkin' da lib
+				'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFilterPanelInputStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo dos campos de filtros de pesquisa.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupFilterPanelInputStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo dos campos de
+				filtros de pesquisa. Se n�o for definido, o css da skin
+				atual ser� carregado, precisando para isso, que o
+				componente 'useSkin' da lib 'component' esteja declarado
+				na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTableStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Define o estilo da tabela da Lov.</description>
+		</attribute>
+		<attribute>
+			<name>popupTableStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo da tabela da
+				Lov. Se n�o for definido, o css da skin atual ser�
+				carregado, precisando para isso, que o componente
+				'useSkin' da lib 'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTableHeaderStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o estilo do cabe�alho da tabela da Lov.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTableHeaderStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classe css que definir� a folha de estilo do cabe�alho
+				da tabela da Lov. Se n�o for definido, o css da skin
+				atual ser� carregado, precisando para isso, que o
+				componente 'useSkin' da lib 'component' esteja declarado
+				na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTableRowClasses</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classes css, separadas por v�rgula (,), que definir�o os
+				estilos das linhas da tabela da Lov. As linhas da tabela
+				usar�o as classes css de modo intercalado, ou seja, se
+				foram declaradas duas classes css, a 1� linha da tabela
+				usuar� a 1� classe css, a 2� linha usar� a 2� classe, a
+				3� linha usar� a 1� classe, assim por diante. Se n�o for
+				definido, o css da skin atual ser� carregado, precisando
+				para isso, que o componente 'useSkin' da lib 'component'
+				esteja declarado na p�gina.
+			</description>
+		</attribute>
+		<attribute>
+			<name>popupTableColumnClasses</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Classes css, separadas por v�rgula (,), que definir�o os
+				estilos das colunas da tabela da Lov. As colunas da
+				tabela usar�o as classes css de modo intercalado, ou
+				seja, se foram declaradas duas classes css, a 1� coluna
+				da tabela usuar� a 1� classe css, a 2� coluna usar� a 2�
+				classe, a 3� coluna usar� a 1� classe, assim por diante.
+				Se n�o for definido, o css da skin atual ser� carregado,
+				precisando para isso, que o componente 'useSkin' da lib
+				'component' esteja declarado na p�gina.
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>help</name>
+		<tag-class>br.gov.component.jsf.help.UIHelpTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Every component may have a unique id that is
+				automatically created if omitted
+			</description>
+		</attribute>
+		<attribute>
+			<name>helpContentSrc</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Indica o caminho, a partir do contexto da aplica��o, que
+				se encontra o arquivo .hlp que cont�m o conte�do que
+				ser� inserido no popup do help.
+			</description>
+		</attribute>
+		<attribute>
+			<name>imageButtonSrc</name>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines width of component
+			</description>
+		</attribute>
+		<attribute>
+			<name>top</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines Y position of component left-top
+				corner
+			</description>
+		</attribute>
+		<attribute>
+			<name>moveable</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				if "true" there is possibility to move component
+			</description>
+		</attribute>
+		<attribute>
+			<name>onhide</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Event must occurs after panel closed
+			</description>
+		</attribute>
+		<attribute>
+			<name>onshow</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Event must occurs after panel opened
+			</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Corresponds to the HTML class attribute
+			</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines height of component
+			</description>
+		</attribute>
+		<attribute>
+			<name>left</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines X position of component left-top
+				corner
+			</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				CSS style(s) is/are to be applied when this component is
+				rendered
+			</description>
+		</attribute>
+		<attribute>
+			<name>shadowOpacity</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				HTML CSS class attribute of element for pop-up
+				suggestion content
+			</description>
+		</attribute>
+		<attribute>
+			<name>headerClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				CSS style(s) is/are to be applied to component header
+				when this component is rendered
+			</description>
+		</attribute>
+		<attribute>
+			<name>shadowDepth</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Pop-up shadow depth for suggestion content
+			</description>
+		</attribute>
+		<attribute>
+			<name>zindex</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute is similar to the standard HTML attribute and
+				can specify window placement relative to the content
+			</description>
+		</attribute>
+		<attribute>
+			<name>minWidth</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines min width of component
+			</description>
+		</attribute>
+		<attribute>
+			<name>resizeable</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				if "true" there is possibility to change component size
+			</description>
+		</attribute>
+		<attribute>
+			<name>minHeight</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Attribute defines min height of component
+			</description>
+		</attribute>
+	</tag>
+	<tag>
+		<name>login</name>
+		<tag-class>br.gov.component.jsf.login.LoginTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>id</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>ID do componente</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Estilo do componente</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do componente
+			</description>
+		</attribute>
+		<attribute>
+			<name>layout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o layout do componente. Valores: 'horizontalLeft'
+				- disp�e os labels e os inputs lado a lado;
+				'horizontalTop' - disp�e os inputs lado a lado com os
+				labels sob eles; 'verticalLeft' - disp�e os labels lado
+				a lado com os inputs formando duas linhas de uma tabela;
+				'verticalTop' - disp�e os labels e os inputs uns sob os
+				outros. O padr�o � 'verticalLeft'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>cellpadding</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o espa�o dado entre a c�lula da tabela gerada e o
+				seu conte�do.
+			</description>
+		</attribute>
+		<attribute>
+			<name>cellspacing</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o espa�o dado entre as c�lulas da tabela gerada.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputValidator</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Nome do validador, cadastrado no faces-config.xml da
+				aplica��o, que ser� utilizado para validar o campo.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Label que representar� do campo texto que ser�
+				preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputLabelStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo do label que representar� o campo texto que ser�
+				preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputLabelStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do label que representar� o
+				campo texto que ser� preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				ID do campo texto que ser� preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo do campo texto que ser� preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do campo texto que ser�
+				preenchido com o usu�rio
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnmouseover</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseover do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnmouseout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseout do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnmousedown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmousedown do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnmouseup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseup do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnchange</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onchange do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnfocus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnblur</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnkeypress</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeypress do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnkeydown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeydown do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnkeyup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeyup do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputOnclick</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onclick do campo texto que ser�
+				preenchido com o usu�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>userInputMaxlength</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o n�mero m�ximo de caracteres do campo.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputValidator</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Nome do validador, cadastrado no faces-config.xml da
+				aplica��o, que ser� utilizado para validar o campo.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputLabel</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Label que representar� do campo texto que ser�
+				preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputLabelStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo do label que representar� do campo texto que ser�
+				preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputLabelStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do label que representar� do
+				campo texto que ser� preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				ID do campo texto que ser� preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo do campo texto que ser� preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do campo texto que ser�
+				preenchido com a senha
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnmouseover</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseover do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnmouseout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseout do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnmousedown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmousedown do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnmouseup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseup do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnchange</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onchange do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnfocus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnblur</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnkeypress</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeypress do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnkeydown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeydown do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnkeyup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeyup do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputOnclick</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onclick do campo texto que ser�
+				preenchido com a senha.
+			</description>
+		</attribute>
+		<attribute>
+			<name>passwordInputMaxlength</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Define o n�mero m�ximo de caracteres do campo.
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkValue</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Valor que ser� exibido no bot�o de submit do formul�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkId</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				ID do bot�o de submit do formul�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo do bot�o de submit do formul�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo do bot�o de submit do
+				formul�rio.
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnmouseover</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseover do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnmouseout</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseout do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnmousedown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmousedown do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnmouseup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onmouseup do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnchange</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onchange do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnfocus</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnblur</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onfocus do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnkeypress</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeypress do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnkeydown</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeydown do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkOnkeyup</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Evento javascript onkeyup do bot�o de submit do
+				formul�rio..
+			</description>
+		</attribute>
+		<attribute>
+			<name>buttonOkAlign</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Alinhamento do bot�o. Poss�veis valores: 'left',
+				'center' e 'right'. O padr�o � 'right'.
+			</description>
+		</attribute>
+		<attribute>
+			<name>errorMessageStyle</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Estilo da mensagem de erro que ser� gerada pela
+				valida��o do componenet.
+			</description>
+		</attribute>
+		<attribute>
+			<name>errorMessageStyleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				Css que cont�m o estilo da mensagem de erro que ser�
+				gerada pela valida��o do componenet.
+			</description>
+		</attribute>
+	</tag>
+</taglib>

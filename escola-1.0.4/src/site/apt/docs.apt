@@ -1,0 +1,128 @@
+~~Demoiselle Sample
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Sample is a set of open source Java EE project samples using
+~~the Demoiselle Framework
+~~
+~~Demoiselle Sample is released under the terms of the GPL license 3
+~~http://www.gnu.org/licenses/gpl.html  GPL License 3
+~~
+~~This file is part of Demoiselle Sample.
+~~
+~~Demoiselle Sample is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU General Public License as published by
+~~the Free Software Foundation version 3.
+~~
+~~Demoiselle Sample is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU General Public License for more details.
+~~
+~~You should have received a copy of the GNU General Public License
+~~along with Demoiselle - Sample.  If not, see <http://www.gnu.org/licenses/>
+  
+                                    ------
+                                    Documentação
+                                    
+Documentação
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+* {Instalação}
+
+  No {{{http://demoiselle-samp.wiki.sourceforge.net/}wiki}} do projeto existem tutoriais disponíveis
+
+  Requisitos: Eclipse configurado com os plugins AspectJ, Maven e um cliente SVN.
+  
+  Baixe o projeto no repositório: 
+  
++----------------------------------------------------------------------------------------+
+ svn co https://demoiselle-samp.svn.sourceforge.net/svnroot/demoiselle-samp/trunk/escola demoiselle-samp 
++----------------------------------------------------------------------------------------+
+
+** {Configurando banco de dados}
+
+  Você encontrará na dentro do projeto a pasta conf, que possui os arquivos: banco_escola.properties e 
+banco_escola.script. Copie os dois arquivos para a pasta <USER_HOME>/escoladb
+
+** {Configurando o controle de acesso para tomcat}
+
+  Você encontrará na dentro do projeto a pasta conf, que possui o arquivo: tomcat-users.xml. 
+Substitua o mesmo arquivo que se encontra no servidor tomcat e utilize o usuário e senha que
+se encontra no mesmo
+
++----------------------------------------------------------------------------------------+
+<tomcat-users>
+  <role rolename="role_aluno"/>
+  <role rolename="role_professor"/>
+  <role rolename="role_administrador"/>
+  
+  <user username="aluno" password="aluno" roles="role_aluno"/>
+  <user username="professor" password="professor" roles="role_professor"/>
+  <user username="admin" password="admin" roles="role_administrador,role_professor"/>
+</tomcat-users>
++----------------------------------------------------------------------------------------+
+
+* {Arquitetura de Referência}
+
+	A arquitetura da aplicação escola é referencia a arquitetura do Framework Demoiselle.
+
+[images/arquitetura.png]
+
+	Extensões sob essa arquitetura serão exibidas na seções a seguir.
+	
+** Casos de Uso
+	
+[images/casodeuso.png]	
+
+** Dependências
+
+	A figura abaixo apresenta as principais dependências da aplicação, com 
+	os módulos do Framework Demoiselle e seus componentes.
+
+[images/componentes.png] Arquitetura Geral
+
+* Camada de Persistência
+
+	Prover a persitências das informações. Utiliza dos dois mecanismos de persistências
+	do framework: Hibernte e JDBC.
+	
+[images/camada_persistencia.png]
+
+**	Funcionalidades
+
+	<<Paginação:>> Os métodos de consulta implementados no DAO utilizam a 
+	especificação de paginação do módulo Core do Demoiselle.
+
+	<<Filtros:>> As consulta dos DAOS utilizam o componente demoiselle-hibernate-filter. 
+
+* 	Camada de Negócio
+	
+[images/camada_negocio.png]
+
+**	Funcionalidades
+
+	<<Autorização:>> Os métodos das classes do tipo BusinessController 
+	utilizam o componente demoiselle-authorization para autorização a execução dos seus métodos.	
+	
+
+* 	Camada de Visão
+	
+[images/camada_visao.png]
+
+**	Funcionalidades
+
+	<<Geração de Retórios:>> O componente demoiselle-report é utilizado para
+	geração dos relatórios da aplicação nos formatados PDF e ODT.
+	
+	<<Paginação:>> O mecanismo de paginação da camada de persistência é integrada
+	com os componentes de paginação JSF.
+	
+	<<Tratamento de Cookies:>> Sob a barra de menu, são exibidas informações sobre
+	o último login do usuário. Esta informações são gravada via cookies e utiliza
+	o componente demoiselle-jsf-ui para realizar esta funcionalidade.
+	
+	<<Troca de Skins:>> O componente demoiselle-jsf-ui é utilizado para trocar
+	dinamicamente os temas da aplicação.

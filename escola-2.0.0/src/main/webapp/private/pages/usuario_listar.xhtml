@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:pinhao="http://www.frameworkpinhao.serpro.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="submenu">
+		<h:commandButton value="Incluir Usuário"
+			action="#{usuarioMB.preInserir}" styleClass="inputText" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line"
+				styleClass="richPanelBodyClass">
+
+				<rich:toolBarGroup>
+					<h:outputLabel value="Usuário" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{usuarioMB.preInserir}" title="Inserir novo usuário" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{usuarioMB.listar}" title="Listar usuários"/>
+				</rich:toolBarGroup>				
+				
+				<rich:toolBarGroup location="right">
+					<t:inputText styleClass="inputText" binding="#{usuarioMB.txtFiltro}" title="Informe o nome do usuario procurado" />
+					<a4j:commandLink action="#{usuarioMB.filtrar}" title="Filtra Usuários">
+						<t:graphicImage value="/private/resources/images/find.png"
+							alt="Filtrar" width="25" border="0" styleClass="outputText"
+							align="center" title="Filtrar" />
+					</a4j:commandLink>
+				</rich:toolBarGroup>				
+
+			</rich:toolBar>
+
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputText value="Total de Registros:" />
+				<h:outputText value="#{usuarioMB.listaUsuario.rowCount}" />
+
+
+				<rich:datascroller align="center" for="usuarioTable"
+					maxPages="#{usuarioMB.maxPages}"
+					page="#{usuarioMB.usuarioPage.pageNumber}" reRender="usuarioTable"
+					scrollerListener="#{usuarioMB.updatePage}" />
+
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					value="#{usuarioMB.listaUsuario}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="usuarioTable" rows="#{usuarioMB.rows}">
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NOME" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.nome}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="CPF" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.cpf}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="LOGIN" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.login}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Alterar" />
+						</f:facet>
+						<a4j:commandLink action="#{usuarioMB.preAlterar}">
+							<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar Usuário" />
+							<f:setPropertyActionListener target="#{usuarioMB.usuario}"
+								value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink action="#{usuarioMB.preExcluir}">
+							<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" alt="Excluir" title="Excluir Usuário"/>
+							<f:setPropertyActionListener target="#{usuarioMB.usuario}"
+								value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+				</rich:dataTable>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

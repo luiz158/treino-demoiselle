@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich" xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	<ui:composition template="/public/templates/default.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<demoiselle:useJs all="true">
+				</demoiselle:useJs>
+
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass"
+					headerClass="richPanelHeaderClass">
+					<rich:tabPanel id="painel" styleClass="richTabPanelStyleClass"
+									headerClass="richTabPanelHeaderClass"
+									tabClass="richTabPanelTabClass"
+									activeTabClass="richTabPanelActiveTabClass"
+									inactiveTabClass="richTabPanelInactiveTabClass"
+									disabledTabClass="richTabPanelDisabledTabClass"
+									contentClass="richTabPanelContentClass" 
+									switchType="client">
+					
+						<rich:tab id="tabItem" label="Items" >
+							<div>
+								<fieldset>
+									<legend>
+										<h:outputLabel for="itemMB_item_description"
+											styleClass="outputLabel" value="Description" />
+		
+									</legend>
+									<t:inputText id="itemMB_item_description" tabindex="1"
+										styleClass="inputText" value="#{itemMB.item.description}" />
+								</fieldset>
+		
+								<fieldset>
+									<legend>
+										<h:outputLabel for="itemMB_item_category_id"
+											styleClass="outputLabel" value="Category" />
+		
+									</legend>
+									<h:selectOneMenu id="itemMB_item_category_id"
+										tabindex="2" value="#{itemMB.item.category.id}">
+		                                <t:selectItems value="#{itemMB.listCategory}" var="element" itemLabel="#{element.name}" itemValue="#{element.id}"/>
+		                            </h:selectOneMenu>  
+								</fieldset>
+		
+							</div>						
+		
+							<div style="padding: 10px; text-align: right;">
+								<t:commandButton title="Ok" tabindex="3" action="#{itemMB.save}"
+									styleClass="botaoComun" value="Ok" id="F2" />
+			
+								<t:commandButton title="Cancelar" tabindex="4" action="#{itemMB.cancel}"
+									styleClass="botaoComun" value="Cancelar" id="F3" />
+			
+							</div>
+						</rich:tab>
+                		<rich:tab id="tabAuction" label="Auctions" rendered="#{itemMB.itemAdded}">
+							<h:panelGrid id="gridAuctionEdit" columns="2">
+								<h:outputLabel for="sellingPrice" value="Selling Price"/>
+								<h:inputText id="sellingPrice" value="#{itemMB.auction.sellingPrice}"/>
+								<h:outputLabel for="startingPrice" value="Starting Price"/>
+								<h:inputText id="startingPrice" value="#{itemMB.auction.startingPrice}"/>
+								<h:outputLabel for="reservePrice" value="Reserve Price"/>
+								<h:inputText id="reservePrice" value="#{itemMB.auction.reservePrice}"/>
+								<h:outputLabel for="deadline" value="Deadline"/>
+								<rich:calendar id="deadline" styleClass="richCalendarStyleClass" 
+								               value="#{itemMB.auction.deadline}" 
+								               inputClass="richCalendarInputTextClass" buttonClass="richCalendarButtonClass"
+								               datePattern="dd/MM/yyyy"/>
+								<div style="padding: 10px; text-align: right;">
+									<t:commandButton title="Save" action="#{itemMB.saveAuction}" styleClass="botaoComun" value="Save" id="F4" />
+						    	</div>               														
+					        </h:panelGrid>
+					        
+				
+							<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+								rows="#{itemMB.rows}" value="#{itemMB.listAuctionsByItem}"
+								headerClass="richDataTableHeaderClass"
+								rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+								columnClasses="richDataTableColumnClass" var="element"
+								rowKeyVar="row" id="auctionsTable" summary="List of Auctions from Item">					
+								<rich:column>
+									<f:facet name="header">
+										<t:outputText value="Product" />
+									</f:facet>
+									<t:outputText styleClass="outputText" value="#{element.item.description}"/>
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">
+										<t:outputText value="Starting Price" />
+									</f:facet>
+									<t:outputText styleClass="outputText" value="#{element.startingPrice}">
+										<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+									</t:outputText>
+									<br/>						
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">
+										<t:outputText value="Selling Price" />
+									</f:facet>
+									<t:outputText styleClass="outputText" value="#{element.sellingPrice}">
+										<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+									</t:outputText>
+								</rich:column>	
+								<rich:column>
+									<f:facet name="header">
+										<t:outputText value="Reserve Price" />
+									</f:facet>
+									<t:outputText styleClass="outputText" value="#{element.reservePrice}">
+										<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+									</t:outputText>
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">
+										<t:outputText value="Deadline" />
+									</f:facet>
+									<t:outputText styleClass="outputText" value="#{element.deadline}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</t:outputText>							
+								</rich:column>
+								<rich:column>
+										<f:facet name="header">
+											<t:outputText value="Edit" />
+										</f:facet>
+										<a4j:commandLink title="Edit" tabindex="4" value=""
+											action="#{itemMB.editAuction}" reRender="gridAuctionEdit">
+											<t:graphicImage value="/private/resources/images/edit.png" tabindex="5"
+			                                    width="15" alt="Edit" title="Edit" border="0" />
+											<f:setPropertyActionListener target="#{itemMB.auction}"
+												value="#{element}" />
+										</a4j:commandLink>
+								</rich:column>
+								<rich:column>
+										<f:facet name="header">
+											<t:outputText value="Delete" />
+										</f:facet>
+										<a4j:commandLink title="Delete" tabindex="5"
+											value="" action="#{itemMB.deleteAuction}" reRender="auctionsTable">
+											<t:graphicImage value="/private/resources/images/delete.png" tabindex="5"
+			                                    width="15" alt="Delete" title="Delete" border="0" />
+											<f:setPropertyActionListener target="#{itemMB.auction}"
+												value="#{element}" />
+										</a4j:commandLink>
+								</rich:column>
+							</rich:dataTable>
+						</rich:tab>
+					</rich:tabPanel>
+				</rich:panel>
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</html>

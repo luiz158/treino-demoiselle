@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="default">
+
+		<property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">false</property>
+		
+		<property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="hibernate.connection.url">jdbc:hsqldb:escola-database</property>
+		<property name="hibernate.connection.username">sa</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.use_sql_comments">false</property>
+		
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Aluno" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Contato" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Disciplina" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Email" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Endereco" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Funcionario" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Nota" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.PapelUsuario" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Professor" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Telefone" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Turma" />
+		<mapping class="br.gov.sample.demoiselle.escola.bean.Usuario" />
+		
+	</session-factory>
+</hibernate-configuration>

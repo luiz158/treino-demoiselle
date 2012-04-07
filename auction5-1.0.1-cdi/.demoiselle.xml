@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <daos />
+  <bcs>
+    <bc>
+      <packageName>br.gov.sample.demoiselle.auction5.business</packageName>
+      <name>ItemBC</name>
+      <dao>
+        <fullName>br.gov.sample.demoiselle.auction5.persistence.dao.IItemDAO</fullName>
+      </dao>
+    </bc>
+  </bcs>
+  <beans>
+    <bean>
+      <packageName>br.gov.sample.demoiselle.auction5.view.managedbean</packageName>
+      <name>ItemMB</name>
+      <varName>itemMB</varName>
+      <scope>session</scope>
+      <pojos>
+        <pojo>
+          <fullName>br.gov.sample.demoiselle.auction5.bean.Item</fullName>
+        </pojo>
+      </pojos>
+      <actions>
+        <action>
+          <name>list</name>
+          <body>return AliasNavigationRule.ALIAS_LIST_ITEM;</body>
+          <returnContent>AliasNavigationRule.ALIAS_LIST_ITEM</returnContent>
+        </action>
+        <action>
+          <name>confirmDelete</name>
+          <body>return AliasNavigationRule.ALIAS_LIST_ITEM;</body>
+          <returnContent>AliasNavigationRule.ALIAS_LIST_ITEM</returnContent>
+        </action>
+        <action>
+          <name>delete</name>
+          <body>return AliasNavigationRule.ALIAS_VIEW_ITEM;</body>
+          <returnContent>AliasNavigationRule.ALIAS_VIEW_ITEM</returnContent>
+        </action>
+        <action>
+          <name>edit</name>
+          <body>return AliasNavigationRule.ALIAS_EDIT_ITEM;</body>
+          <returnContent>AliasNavigationRule.ALIAS_EDIT_ITEM</returnContent>
+        </action>
+        <action>
+          <name>save</name>
+          <body>return AliasNavigationRule.ALIAS_LIST_ITEM;</body>
+          <returnContent>AliasNavigationRule.ALIAS_LIST_ITEM</returnContent>
+        </action>
+      </actions>
+    </bean>
+  </beans>
+  <facades />
+  <navRulePackage>br.gov.sample.demoiselle.auction5.constant</navRulePackage>
+  <messagePackage>br.gov.sample.demoiselle.auction5.message</messagePackage>
+</project>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:pinhao="http://www.frameworkpinhao.serpro.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<ui:define name="body">
+
+		<h:form>
+
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Usuário" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup>
+					<h:commandLink value="Excluir"
+						action="#{usuarioMB.excluir}" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup>
+					<h:commandLink value="Cancelar" action="#{usuarioMB.cancelar}" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<div>
+				<fieldset><legend> ID </legend> <t:outputText
+					value="#{usuarioMB.usuario.id}" /></fieldset>
+
+				<fieldset><legend> Nome </legend> <t:outputText
+					value="#{usuarioMB.usuario.nome}" /></fieldset>
+
+				<fieldset><legend> CPF </legend> <t:outputText
+					value="#{usuarioMB.usuario.cpf}" /></fieldset>
+
+				<fieldset><legend> Login </legend> <t:outputText
+					value="#{usuarioMB.usuario.login}" /></fieldset>
+
+				<fieldset><legend> Skin </legend> <t:outputText
+					value="#{usuarioMB.usuario.skin}" /></fieldset>
+				</div>
+			</rich:panel>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

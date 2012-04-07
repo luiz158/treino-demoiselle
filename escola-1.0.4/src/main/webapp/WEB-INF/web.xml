@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Demoiselle Sample Copyright (c) 2009 Serpro and other contributors as indicated by the @author tag. See the copyright.txt 
+	in the distribution for a full listing of contributors. Demoiselle Sample is a set of open source Java EE project samples 
+	using the Demoiselle Framework Demoiselle Sample is released under the terms of the GPL license 3 http://www.gnu.org/licenses/gpl.html 
+	GPL License 3 This file is part of Demoiselle Sample. Demoiselle Sample is free software: you can redistribute it and/or 
+	modify it under the terms of the GNU General Public License as published by the Free Software Foundation version 3. Demoiselle 
+	Sample is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have 
+	received a copy of the GNU General Public License along with Demoiselle - Sample. If not, see <http://www.gnu.org/licenses/> -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <display-name>escola</display-name>
+ <context-param>
+  <param-name>facelets.DEVELOPMENT</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <listener>
+  <display-name>Database configurator</display-name>
+  <listener-class>br.gov.demoiselle.escola.init.DataBaseConfigurator</listener-class>
+ </listener>
+ <servlet>
+  <servlet-name>Faces Servlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <!-- Pages Configuration -->
+ <welcome-file-list>
+  <welcome-file>index.jsp</welcome-file>
+ </welcome-file-list>
+ <error-page>
+  <error-code>404</error-code>
+  <location>/public/pages/error/404.jsp</location>
+ </error-page>
+ <error-page>
+  <error-code>500</error-code>
+  <location>/public/pages/error/500.jsp</location>
+ </error-page>
+ <error-page>
+  <exception-type>java.lang.Throwable</exception-type>
+  <location>/public/pages/error/global.jsp</location>
+ </error-page>
+ <!-- Security Configuration --><!--
+ <security-constraint>
+  <web-resource-collection>
+   <web-resource-name>Area Protegida</web-resource-name>
+   <description>Limita o acesso a todos os recursos incluidos a partir
+				do /private</description>
+   <url-pattern>/private/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>*</role-name>
+  </auth-constraint>
+ </security-constraint>
+ <login-config>
+  <auth-method>FORM</auth-method>
+  <form-login-config>
+   <form-login-page>/public/pages/security/login.jsp</form-login-page>
+   <form-error-page>/public/pages/error/acess.jsp</form-error-page>
+  </form-login-config>
+ </login-config>
+ <security-role>
+  <role-name>*</role-name>
+ </security-role>
+--></web-app>

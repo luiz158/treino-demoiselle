@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+		<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+			<rich:toolBarGroup>
+				<h:outputLabel value="Disciplina" />
+			</rich:toolBarGroup>
+
+			<rich:toolBarGroup>
+				<h:commandLink value="Excluir"
+					action="#{funcionarioMB.excluir}" title="Excluir Funcionário"/>
+			</rich:toolBarGroup>
+
+			<rich:toolBarGroup>
+				<h:commandLink value="Cancelar" action="#{funcionarioMB.cancelar}" title="Cancelar exclusão" />
+			</rich:toolBarGroup>
+		</rich:toolBar>
+
+		<h:messages globalOnly="true" errorClass="errorFatalMessage"
+			fatalClass="errorFatalMessage" infoClass="infoMessage"
+			warnClass="warnMessage" showSummary="true" showDetail="true">
+		</h:messages>
+
+		<rich:panel styleClass="richPanelStyleClass"
+			bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+			<div>
+			<fieldset><legend> ID </legend> <t:outputText
+				value="#{funcionarioMB.funcionario.id}" /></fieldset>
+
+			<fieldset><legend> NOME </legend> <t:outputText
+				value="#{funcionarioMB.funcionario.nome}" /></fieldset>
+				
+					<fieldset>
+				<legend> NASCIMENTO </legend> 
+				<t:outputText value="#{funcionarioMB.funcionario.nascimento}" />
+			</fieldset>
+
+			<fieldset>
+				<legend> LOTAÇÃO </legend> 
+				<t:outputText value="#{funcionarioMB.funcionario.lotacao}" />
+			</fieldset>
+				
+			</div>
+		</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

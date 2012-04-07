@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="usuario_listar::#private#pages#usuario_listar.jsp" NAME="output"
+    PATH="/private/pages/usuario_listar.jsp"
+    TARGET="rules:#private#pages#usuario_listar.jsp"
+    TITLE="usuario_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuario_editar::#private#pages#usuario_editar.jsp"
+    NAME="output1" PATH="/private/pages/usuario_editar.jsp"
+    TARGET="rules:#private#pages#usuario_editar.jsp"
+    TITLE="usuario_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuario_visualizar::#private#pages#usuario_visualizar.jsp"
+    NAME="output2" PATH="/private/pages/usuario_visualizar.jsp"
+    TARGET="rules:#private#pages#usuario_visualizar.jsp"
+    TITLE="usuario_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="usuario_inserir::#private#pages#usuario_editar.jsp"
+    NAME="output3" PATH="/private/pages/usuario_editar.jsp"
+    TARGET="rules:#private#pages#usuario_editar.jsp"
+    TITLE="usuario_inserir" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="aluno_listar::#private#pages#aluno_listar.jsp" NAME="output4"
+    PATH="/private/pages/aluno_listar.jsp"
+    TARGET="rules:#private#pages#aluno_listar.jsp" TITLE="aluno_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="aluno_editar::#private#pages#aluno_editar.jsp" NAME="output5"
+    PATH="/private/pages/aluno_editar.jsp"
+    TARGET="rules:#private#pages#aluno_editar.jsp" TITLE="aluno_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="aluno_visualizar::#private#pages#aluno_visualizar.jsp"
+    NAME="output6" PATH="/private/pages/aluno_visualizar.jsp"
+    TARGET="rules:#private#pages#aluno_visualizar.jsp"
+    TITLE="aluno_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="aluno_inserir::#private#pages#aluno_editar.xhtml" NAME="output7"
+    PATH="/private/pages/aluno_editar.xhtml"
+    TARGET="rules:#private#pages#aluno_editar.xhtml"
+    TITLE="aluno_inserir" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="professor_listar::#private#pages#professor_listar.jsp"
+    NAME="output8" PATH="/private/pages/professor_listar.jsp"
+    TARGET="rules:#private#pages#professor_listar.jsp"
+    TITLE="professor_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="professor_editar::#private#pages#professor_editar.jsp"
+    NAME="output9" PATH="/private/pages/professor_editar.jsp"
+    TARGET="rules:#private#pages#professor_editar.jsp"
+    TITLE="professor_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="professor_visualizar::#private#pages#professor_visualizar.jsp"
+    NAME="output10" PATH="/private/pages/professor_visualizar.jsp"
+    TARGET="rules:#private#pages#professor_visualizar.jsp"
+    TITLE="professor_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="turma_listar::#private#pages#turma_listar.jsp" NAME="output11"
+    PATH="/private/pages/turma_listar.jsp"
+    TARGET="rules:#private#pages#turma_listar.jsp" TITLE="turma_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="turma_editar::#private#pages#turma_editar.jsp" NAME="output12"
+    PATH="/private/pages/turma_editar.jsp"
+    TARGET="rules:#private#pages#turma_editar.jsp" TITLE="turma_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="turma_visualizar::#private#pages#turma_visualizar.jsp"
+    NAME="output13" PATH="/private/pages/turma_visualizar.jsp"
+    TARGET="rules:#private#pages#turma_visualizar.jsp"
+    TITLE="turma_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="disciplina_editar::#private#pages#disciplina_editar.jsp"
+    NAME="output14" PATH="/private/pages/disciplina_editar.jsp"
+    TARGET="rules:#private#pages#disciplina_editar.jsp"
+    TITLE="disciplina_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="disciplina_visualizar::#private#pages#disciplina_visualizar.jsp"
+    NAME="output15" PATH="/private/pages/disciplina_visualizar.jsp"
+    TARGET="rules:#private#pages#disciplina_visualizar.jsp"
+    TITLE="disciplina_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="disciplina_listar::#private#pages#disciplina_listar.jsp"
+    NAME="output16" PATH="/private/pages/disciplina_listar.jsp"
+    TARGET="rules:#private#pages#disciplina_listar.jsp"
+    TITLE="disciplina_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="nota_listar::#private#pages#nota_listar.jsp"
+    NAME="output17" PATH="/private/pages/nota_listar.jsp"
+    TARGET="rules:#private#pages#nota_listar.jsp" TITLE="nota_listar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="nota_editar::#private#pages#nota_editar.jsp"
+    NAME="output18" PATH="/private/pages/nota_editar.jsp"
+    TARGET="rules:#private#pages#nota_editar.jsp" TITLE="nota_editar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="nota_visualizar::#private#pages#nota_visualizar.jsp"
+    NAME="output19" PATH="/private/pages/nota_visualizar.jsp"
+    TARGET="rules:#private#pages#nota_visualizar.jsp"
+    TITLE="nota_visualizar" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="nota_inserir::#private#pages#nota_editar.jsp" NAME="output20"
+    PATH="/private/pages/nota_editar.jsp"
+    TARGET="rules:#private#pages#nota_editar.jsp" TITLE="nota_inserir" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="escola_skin::#private#pages#escola_skin.jsp"
+    NAME="output21" PATH="/private/pages/escola_skin.jsp"
+    TARGET="rules:#private#pages#escola_skin.jsp" TITLE="escola_skin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="escola_login::#index.jsp" NAME="output22"
+    PATH="/index.jsp" TARGET="rules:#index.jsp" TITLE="escola_login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="escola_menu::#private#pages#default.jsp"
+    NAME="output23" PATH="/private/pages/default.jsp"
+    TARGET="rules:#private#pages#default.jsp" TITLE="escola_menu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="escola_relatorio::#private#pages#escola_relatorio.jsp"
+    NAME="output24" PATH="/private/pages/escola_relatorio.jsp"
+    TARGET="rules:#private#pages#escola_relatorio.jsp"
+    TITLE="escola_relatorio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#index.jsp" PATH="/index.jsp"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#disciplina_listar.jsp"
+  PATH="/private/pages/disciplina_listar.jsp" SHAPE="304,2481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#escola_relatorio.jsp"
+  PATH="/private/pages/escola_relatorio.jsp" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#nota_visualizar.jsp"
+  PATH="/private/pages/nota_visualizar.jsp" SHAPE="304,2817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#nota_listar.jsp"
+  PATH="/private/pages/nota_listar.jsp" SHAPE="304,2593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#turma_listar.jsp"
+  PATH="/private/pages/turma_listar.jsp" SHAPE="304,1921,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#usuario_visualizar.jsp"
+  PATH="/private/pages/usuario_visualizar.jsp" SHAPE="304,1025,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#turma_visualizar.jsp"
+  PATH="/private/pages/turma_visualizar.jsp" SHAPE="304,2145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#disciplina_visualizar.jsp"
+  PATH="/private/pages/disciplina_visualizar.jsp" SHAPE="304,2369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#disciplina_editar.jsp"
+  PATH="/private/pages/disciplina_editar.jsp" SHAPE="304,2257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#usuario_editar.jsp"
+  PATH="/private/pages/usuario_editar.jsp" SHAPE="304,913,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#aluno_editar.xhtml"
+  PATH="/private/pages/aluno_editar.xhtml" SHAPE="304,1473,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#aluno_listar.jsp"
+  PATH="/private/pages/aluno_listar.jsp" SHAPE="304,1137,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#professor_editar.jsp"
+  PATH="/private/pages/professor_editar.jsp" SHAPE="304,1697,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#usuario_listar.jsp"
+  PATH="/private/pages/usuario_listar.jsp" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#nota_editar.jsp"
+  PATH="/private/pages/nota_editar.jsp" SHAPE="304,2705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#professor_visualizar.jsp"
+  PATH="/private/pages/professor_visualizar.jsp" SHAPE="304,1809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#aluno_editar.jsp"
+  PATH="/private/pages/aluno_editar.jsp" SHAPE="304,1249,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#turma_editar.jsp"
+  PATH="/private/pages/turma_editar.jsp" SHAPE="304,2033,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#escola_skin.jsp"
+  PATH="/private/pages/escola_skin.jsp" SHAPE="304,2929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#aluno_visualizar.jsp"
+  PATH="/private/pages/aluno_visualizar.jsp" SHAPE="304,1361,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#professor_listar.jsp"
+  PATH="/private/pages/professor_listar.jsp" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#private#pages#default.jsp"
+  PATH="/private/pages/default.jsp" SHAPE="304,913,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Disciplina" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup rendered="#{disciplinaMB.disciplina.id != null}">
+					<h:commandLink value="Alterar" action="#{disciplinaMB.alterar}" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup rendered="#{disciplinaMB.disciplina.id == null}">
+					<h:commandLink value="Salvar" action="#{disciplinaMB.inserir}"
+						actionFor="subFormId" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{disciplinaMB.cancelar}" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<fieldset><h:outputLabel value="Nome" for="disciplina_nome" />
+				<t:inputText id="disciplina_nome" styleClass="inputText" value="#{disciplinaMB.disciplina.nome}" tabindex="1" /></fieldset>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<p:fieldset legend="Autentique-se">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel for="username" value="usuário" />
+					<h:inputText id="username" value="#{credential.username}" />
+
+					<h:outputLabel for="password" value="senha" />
+					<h:inputSecret id="password" value="#{credential.password}" />
+
+					<p:spacer />
+					<p:spacer />
+					
+					<h:outputText value="admin" />
+					<h:outputText value="secret" />
+
+					<h:outputText value="guest" />
+					<h:outputText value="guest" />
+
+					<p:spacer />
+					<p:spacer />
+					
+					<p:spacer />
+					<h:commandButton value="Logar" action="#{securityContext.login}" />
+				</h:panelGrid>
+			</h:form>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>serpro</short-name>
+    <uri>http://www.frameworkdemoiselle.gov.br</uri>
+    <tag>
+        <name>tamanhoValidator</name>
+        <tag-class>
+            br.gov.component.demoiselle.jsf.validators.tag.LengthValidatorTag
+        </tag-class>
+        <attribute>
+            <name>length</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Tamanho m�ximo de caracteres que o campo pode conter
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>useSkin</name>
+        <tag-class>br.gov.component.demoiselle.jsf.skin.UseSkinTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+    <tag>
+        <name>useJs</name>
+        <tag-class>br.gov.component.demoiselle.jsf.js.UseJsTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>all</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Poss�veis valores: 'true' ou 'false'. Se for definido
+                como 'true', todos os javascripts contidos no componente
+                ser�o importados na p�gina. O valor padr�o � 'false'.
+            </description>
+        </attribute>
+        <attribute>
+            <name>hotKeys</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Poss�veis valores: 'true' ou 'false'. Se for definido
+                como 'true', o javascript que habilita a funcionalidade
+                de teclas de atalho ser� importado na p�gina. O valor
+                padr�o � 'false'.
+            </description>
+        </attribute>
+        <attribute>
+            <name>browserBackButton</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Poss�veis valores: 'true' ou 'false'. Se for definido
+                como 'true', o javascript que desabilita as a��es dos
+                bot�es do browser (voltar, avan�ar, atualizar etc.) ser�
+                importado na p�gina. O valor padr�o � 'false'.
+            </description>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>locationBar</name>
+        <tag-class>
+            br.gov.component.demoiselle.jsf.locationbar.UILocationBarTag
+        </tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Define o nome que representar� o location da p�gina onde
+                o componente foi declarado. Esse ser� o nome que
+                aparecer� na p�gina para o usu�rio.
+            </description>
+        </attribute>
+        <attribute>
+            <name>level</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Define o n�vel em que a p�gina se encontra, ou seja, o
+                n�vel 0 significa que a p�gina � a root da navega��o;
+                n�vel 1 significa que a p�gina � a segunda na hierarquia
+                e assim por diante. Obs.: Podem existir v�rias p�ginas
+                com o mesmo n�vel dentro da aplica��o, inclusive v�rias
+                p�ginas roots.
+            </description>
+        </attribute>
+        <attribute>
+            <name>style</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>Define o estilo do componente.</description>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Classe css que definir� a folha de estilo do componente.
+                Se n�o for definido, o css da skin atual ser� carregado,
+                precisando para isso, que o componente 'useSkin' da lib
+                'component' esteja declarado na p�gina.
+            </description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>help</name>
+        <tag-class>br.gov.component.demoiselle.jsf.help.UIHelpTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Every component may have a unique id that is
+                automatically created if omitted
+            </description>
+        </attribute>
+        <attribute>
+            <name>helpContentSrc</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Indica o caminho, a partir do contexto da aplica��o, que
+                se encontra o arquivo .hlp que cont�m o conte�do que
+                ser� inserido no popup do help.
+            </description>
+        </attribute>
+        <attribute>
+            <name>imageButtonSrc</name>
+            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>width</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines width of component
+            </description>
+        </attribute>
+        <attribute>
+            <name>top</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines Y position of component left-top
+                corner
+            </description>
+        </attribute>
+        <attribute>
+            <name>moveable</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                if "true" there is possibility to move component
+            </description>
+        </attribute>
+        <attribute>
+            <name>onhide</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Event must occurs after panel closed
+            </description>
+        </attribute>
+        <attribute>
+            <name>onshow</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Event must occurs after panel opened
+            </description>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Corresponds to the HTML class attribute
+            </description>
+        </attribute>
+        <attribute>
+            <name>height</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines height of component
+            </description>
+        </attribute>
+        <attribute>
+            <name>left</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines X position of component left-top
+                corner
+            </description>
+        </attribute>
+        <attribute>
+            <name>style</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                CSS style(s) is/are to be applied when this component is
+                rendered
+            </description>
+        </attribute>
+        <attribute>
+            <name>shadowOpacity</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                HTML CSS class attribute of element for pop-up
+                suggestion content
+            </description>
+        </attribute>
+        <attribute>
+            <name>headerClass</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                CSS style(s) is/are to be applied to component header
+                when this component is rendered
+            </description>
+        </attribute>
+        <attribute>
+            <name>shadowDepth</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Pop-up shadow depth for suggestion content
+            </description>
+        </attribute>
+        <attribute>
+            <name>zindex</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute is similar to the standard HTML attribute and
+                can specify window placement relative to the content
+            </description>
+        </attribute>
+        <attribute>
+            <name>minWidth</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines min width of component
+            </description>
+        </attribute>
+        <attribute>
+            <name>resizeable</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                if "true" there is possibility to change component size
+            </description>
+        </attribute>
+        <attribute>
+            <name>minHeight</name>
+            <rtexprvalue>false</rtexprvalue>
+            <description>
+                Attribute defines min height of component
+            </description>
+        </attribute>
+    </tag>
+</taglib>

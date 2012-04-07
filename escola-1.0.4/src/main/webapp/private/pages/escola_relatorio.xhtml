@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Alunos:" />
+				
+					<h:commandLink value="PDF" action="#{escolaMB.gerarRelatorio}" title="Relatório de Aluno em PDF" >
+						<f:param name="ReportName" value="relatorio_aluno_pdf" />
+					</h:commandLink>
+				
+					<h:commandLink value="ODT" action="#{escolaMB.gerarRelatorio}" title="Relatório de Aluno em ODT">
+						<f:param name="ReportName" value="relatorio_aluno_odt" />
+					</h:commandLink>
+				</rich:toolBarGroup>
+				
+				<rich:toolBarGroup >
+					<h:outputLabel value="Turmas:" />
+				
+					<h:commandLink value="PDF"
+						action="#{escolaMB.gerarRelatorio}" title="Relatório de Turmas em PDF">
+						<f:param name="ReportName" value="relatorio_turma_pdf"  />
+					</h:commandLink>
+				
+					<h:commandLink value="ODT" action="#{escolaMB.gerarRelatorio}" title="Relatório de Turmas em ODT">
+						<f:param name="ReportName" value="relatorio_turma_odt" />
+					</h:commandLink>
+				</rich:toolBarGroup>
+				
+				<rich:toolBarGroup >
+					<h:outputLabel value="Professores:" />
+				
+					<h:commandLink value="PDF"
+						action="#{escolaMB.gerarRelatorio}" title="Relatório de Professores em PDF">
+						<f:param name="ReportName" value="relatorio_professor_pdf" />
+					</h:commandLink>		
+				
+					<h:commandLink value="ODT" action="#{escolaMB.gerarRelatorio}"  title="Relatório de Professores em ODT">
+						<f:param name="ReportName" value="relatorio_professor_odt" />
+					</h:commandLink>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,1 @@
+Pasta onde serão armazenados todos as páginas web da aplicação. (arquivos .jsp, .html, .xhtml etc.)

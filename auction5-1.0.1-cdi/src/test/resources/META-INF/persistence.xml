@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_1_0.xsd"
+	version="1.0">
+	
+	<persistence-unit name="Auction5TestPU" transaction-type="RESOURCE_LOCAL">
+	
+<!--		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+		<provider>oracle.toplink.essentials.PersistenceProvider</provider>
+		
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+		
+<!--		<properties>-->
+<!--			<property name="eclipselink.logging.level" value="FINE" />-->
+<!--			<property name="eclipselink.target-database" value="PostgreSQL" />-->
+<!--			<property name="eclipselink.jdbc.driver" value="org.postgresql.Driver" />-->
+<!--			<property name="eclipselink.jdbc.url" value="jdbc:postgresql://10.200.111.96:5432/auction5" />-->
+<!--			<property name="eclipselink.jdbc.user" value="sa_auction5" />-->
+<!--			<property name="eclipselink.jdbc.password" value="thepass" />-->
+<!--		</properties>-->
+<!--		 -->
+		<properties>
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.target-database" value="PostgreSQL" />
+			<property name="toplink.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/auction5" />
+			<property name="toplink.jdbc.user" value="sa_auction5" />
+			<property name="toplink.jdbc.password" value="thepass" />
+			<property name="toplink.ddl-generation" value="create-tables" />
+			<property name="toplink.ddl-generation.output-mode" value="database" />
+		</properties>
+<!--		 -->
+		 
+	</persistence-unit>
+	
+</persistence>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="ReportProfessor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="USER_NAME" class="java.lang.String" isForPrompting="false"/>
+	<field name="nome" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="38">
+			<staticText>
+				<reportElement key="staticText-1" x="117" y="17" width="321" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Professores]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-2" x="258" y="0" width="275" height="17" forecolor="#B3AAAA"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Aplicação Escola - Framework Demoiselle]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="dd/MM/yyyy" isBlankWhenNull="false" hyperlinkType="None">
+				<reportElement key="textField" x="402" y="17" width="132" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false" hyperlinkType="None">
+				<reportElement key="textField" x="39" y="0" width="264" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{USER_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-9" x="1" y="0" width="39" height="15"/>
+				<textElement/>
+				<text><![CDATA[Usuário?]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-3" x="0" y="34" width="535" height="1" forecolor="#000000"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19">
+			<staticText>
+				<reportElement key="staticText-3" x="2" y="4" width="137" height="14"/>
+				<textElement/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-1" x="0" y="16" width="535" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18">
+			<textField isBlankWhenNull="false" hyperlinkType="None">
+				<reportElement key="textField-1" x="2" y="1" width="531" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-2" x="0" y="17" width="535" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="18"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="34">
+			<textField isBlankWhenNull="false" hyperlinkType="None">
+				<reportElement key="textField" x="0" y="0" width="534" height="34"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement key="rectangle-1" x="314" y="-9" width="0" height="0"/>
+			</rectangle>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="27">
+			<textField evaluationTime="Report" isBlankWhenNull="false" hyperlinkType="None">
+				<reportElement key="textField" x="402" y="0" width="134" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Total de Páginas: " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="27"/>
+	</summary>
+</jasperReport>

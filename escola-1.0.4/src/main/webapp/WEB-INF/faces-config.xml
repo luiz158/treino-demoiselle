@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Demoiselle Sample
+ Copyright (c) 2009 Serpro and other contributors as indicated
+ by the @author tag. See the copyright.txt in the distribution for a
+ full listing of contributors.
+ 
+ Demoiselle Sample is a set of open source Java EE project samples using
+ the Demoiselle Framework
+  
+ Demoiselle Sample is released under the terms of the GPL license 3
+ http://www.gnu.org/licenses/gpl.html  GPL License 3
+   
+ This file is part of Demoiselle Sample.
+ 
+ Demoiselle Sample is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+ 
+ Demoiselle Sample is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with Demoiselle - Sample.  If not, see <http://www.gnu.org/licenses/>
+-->
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
+	version="1.2">
+	<!-- Facelets Configuration-->
+
+	<managed-bean>
+		<managed-bean-name>alunoMB</managed-bean-name>
+		<managed-bean-class>br.gov.demoiselle.escola.ui.managedbean.AlunoMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>usuarioMB</managed-bean-name>
+		<managed-bean-class>br.gov.demoiselle.escola.ui.managedbean.UsuarioMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>professorMB</managed-bean-name>
+		<managed-bean-class>
+			br.gov.demoiselle.escola.ui.managedbean.ProfessorMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>disciplinaMB</managed-bean-name>
+		<managed-bean-class>
+			br.gov.demoiselle.escola.ui.managedbean.DisciplinaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>turmaMB</managed-bean-name>
+		<managed-bean-class>br.gov.demoiselle.escola.ui.managedbean.TurmaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>escolaMB</managed-bean-name>
+		<managed-bean-class>br.gov.demoiselle.escola.ui.managedbean.EscolaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>notaMB</managed-bean-name>
+		<managed-bean-class>br.gov.demoiselle.escola.ui.managedbean.NotaMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>funcionarioMB</managed-bean-name>
+		<managed-bean-class>
+			br.gov.demoiselle.escola.ui.managedbean.FuncionarioMB</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<message-bundle>facesMessage</message-bundle>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>pt_BR</supported-locale>
+			<supported-locale>en_US</supported-locale>
+		</locale-config>
+	</application>
+
+
+
+	<!--Regras-->
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>usuario_listar</from-outcome>
+			<to-view-id>/private/pages/usuario_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuario_editar</from-outcome>
+			<to-view-id>/private/pages/usuario_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuario_visualizar</from-outcome>
+			<to-view-id>/private/pages/usuario_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>usuario_inserir</from-outcome>
+			<to-view-id>/private/pages/usuario_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aluno_listar</from-outcome>
+			<to-view-id>/private/pages/aluno_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aluno_editar</from-outcome>
+			<to-view-id>/private/pages/aluno_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aluno_visualizar</from-outcome>
+			<to-view-id>/private/pages/aluno_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>aluno_inserir</from-outcome>
+			<to-view-id>/private/pages/aluno_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>professor_listar</from-outcome>
+			<to-view-id>/private/pages/professor_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>professor_editar</from-outcome>
+			<to-view-id>/private/pages/professor_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>professor_visualizar</from-outcome>
+			<to-view-id>/private/pages/professor_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>turma_listar</from-outcome>
+			<to-view-id>/private/pages/turma_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>turma_editar</from-outcome>
+			<to-view-id>/private/pages/turma_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>turma_visualizar</from-outcome>
+			<to-view-id>/private/pages/turma_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>disciplina_editar</from-outcome>
+			<to-view-id>/private/pages/disciplina_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>disciplina_visualizar</from-outcome>
+			<to-view-id>/private/pages/disciplina_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>disciplina_listar</from-outcome>
+			<to-view-id>/private/pages/disciplina_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nota_listar</from-outcome>
+			<to-view-id>/private/pages/nota_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nota_editar</from-outcome>
+			<to-view-id>/private/pages/nota_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nota_visualizar</from-outcome>
+			<to-view-id>/private/pages/nota_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>nota_inserir</from-outcome>
+			<to-view-id>/private/pages/nota_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>escola_skin</from-outcome>
+			<to-view-id>/private/pages/escola_skin.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>escola_login</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>escola_menu</from-outcome>
+			<to-view-id>/private/pages/default.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>escola_relatorio</from-outcome>
+			<to-view-id>/private/pages/escola_relatorio.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>funcionario_listar</from-outcome>
+			<to-view-id>/private/pages/funcionario_listar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>funcionario_visualizar</from-outcome>
+			<to-view-id>/private/pages/funcionario_visualizar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>funcionario_inserir</from-outcome>
+			<to-view-id>/private/pages/funcionario_editar.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>funcionario_editar</from-outcome>
+			<to-view-id>/private/pages/funcionario_editar.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<lifecycle>
+		<phase-listener>br.gov.demoiselle.escola.ui.listener.MessagemListener</phase-listener>
+	</lifecycle>
+
+</faces-config>

@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich" xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	<ui:composition template="/public/templates/default.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<demoiselle:useJs all="true"/>
+
+				<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+	                <rich:toolBarGroup itemSeparator="square">
+	                    <h:commandLink value="#{msg.itemMB_newItem_value}" action="#{itemMB.newItem}"
+	                        title="#{msg.itemMB_newItem_title}" />
+	                </rich:toolBarGroup>
+	                <rich:toolBarGroup >
+						<h:selectOneMenu id="itemMB_item_category_name" tabindex="3" value="#{itemMB.item.category.id}">
+							<t:selectItems value="#{itemMB.listCategory}" var="element" 
+							      itemLabel="#{element.name}" 
+							      itemValue="#{element.id}" />
+						</h:selectOneMenu>
+	                    <a4j:commandLink action="#{itemMB.list}" title="#{msg.itemMB_list_title}">
+	                        <t:graphicImage value="/private/resources/images/find.png"
+	                            alt="#{msg.itemMB_list_alt}" width="25" border="0" styleClass="outputText"
+	                            align="center" title="#{msg.itemMB_list_title}" />
+	                    </a4j:commandLink>
+	                </rich:toolBarGroup>
+	                <rich:toolBarGroup location="right">
+	                   <demoiselle:help/>
+	                </rich:toolBarGroup>
+	            </rich:toolBar>
+
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass"
+					headerClass="richPanelHeaderClass">
+					<rich:dataTable width="100%" summary="Lista de itemMB.item"
+						styleClass="richDataTableStyleClass" value="#{itemMB.listItem}"
+						headerClass="richDataTableHeaderClass"
+						rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+						columnClasses="richDataTableColumnClass" var="element" rowKeyVar="row"
+						id="elementList">
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="#{msg.item_id}" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.id}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="#{msg.item_description}" />
+							</f:facet>
+							<t:outputText styleClass="outputText" value="#{element.description}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="#{msg.itemMB_edit_value}" />
+							</f:facet>
+							<a4j:commandLink title="Edit" tabindex="4" value=""
+								action="#{itemMB.edit}">
+								<t:graphicImage value="/private/resources/images/edit.png" tabindex="5"
+                                    width="15" alt="#{msg.itemMB_edit_alt}" title="#{msg.itemMB_edit_title}" border="0" />
+								<f:setPropertyActionListener target="#{itemMB.item}"
+									value="#{element}" />
+							</a4j:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<t:outputText value="#{msg.itemMB_delete_value}" />
+							</f:facet>
+							<a4j:commandLink title="#{msg.itemMB_delete_title}" tabindex="5"
+								value="" action="#{itemMB.delete}">
+								<t:graphicImage value="/private/resources/images/delete.png" tabindex="5"
+                                    width="15" alt="#{msg.itemMB_delete_alt}" title="#{msg.itemMB_delete_title}" border="0" />
+								<f:setPropertyActionListener target="#{itemMB.item}"
+									value="#{element}" />
+							</a4j:commandLink>
+						</rich:column>
+					</rich:dataTable>
+				</rich:panel>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

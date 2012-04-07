@@ -1,0 +1,14 @@
+/.classpath
+/.project
+/.settings
+/.target
+/build
+/dist
+/bin
+/exploded-archives
+/test-build
+/classes
+/obf
+.svn
+.ant-targets-*
+lixo

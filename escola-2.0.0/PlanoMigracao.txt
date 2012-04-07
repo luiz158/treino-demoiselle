@@ -1,0 +1,57 @@
+= Camada de Negócio =
+
+Exemplo:
+br.gov.sample.demoiselle.escola.business.IDisciplinaBC
+br.gov.sample.demoiselle.escola.business.implementation.DisciplinaBC
+
+interfaces:
+* remover extends IBusinessController ou extends IFacade
+* incluir estereótipo @BusinessController ou @Facade
+
+classes implementadoras:
+* substituir anotação da injeção de @Injection para @Inject
+
+
+= Mecanismo de Configuração =
+
+Exemplo:
+br.gov.demoiselle.escola.config.EscolaConfig
+br.gov.sample.demoiselle.escola.factory.EscolaDAOFactory
+
+classe de configuração:
+* remover implements IConfig, se existente
+* incluir estereótipo @Configuration
+* remover códigos necessários para o padrão de projeto singleton (i.e., variável estática instance, construtor privado da classe, método getInstance(), etc)
+* substituir @ConfigKey por @Key, fazendo as respectivas alterações
+
+classe de inicialização (implements IInitializationAction) com o intuito de carregar uma configuração:
+* removê-la, pois o novo mecanismo, baseado em CDI, fará esse carregamento automaticamente
+
+referências à configuração:
+* incluir variável na classe e anotar a primeira com @Inject
+* substituir a chamada ao método getInstance() pela própria referência da variável
+
+
+= Mecanismo de Inicialização =
+
+Exemplo:
+br.gov.sample.demoiselle.escola.init.DatabaseServer
+br.gov.sample.demoiselle.escola.init.DataSampleLoader
+
+classe de inicialização:
+* remover implements IInitializationAction, se existente
+* remover método setServletContext(), se existente
+* anotar método execute() com @Startup, definindo a prioridade exigida para a sua execução
+
+arquivo de configurações demoiselle.properties:
+* remover a linha com a chave framework.demoiselle.web.initialization.action
+
+
+= Mecanismo de Log =
+
+Exemplo:
+br.gov.sample.demoiselle.escola.view.managedbean.EscolaMB
+
+* substituir variável estática (normalmente chamada log) do tipo org.apache.log4j.Logger por uma
+  variável de instância do tipo org.slf4j.Logger
+* anotar variável com @Inject

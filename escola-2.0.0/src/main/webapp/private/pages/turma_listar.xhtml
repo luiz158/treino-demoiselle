@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+		
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{turmaMB.preInserir}" title="Incluir nova turma"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{turmaMB.listar}" title="Listar turmas"/>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+			
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputText value="Total de Registros: " />
+				<h:outputText value="#{turmaMB.listaTurma.rowCount}" />
+
+				<rich:datascroller align="center" for="turmaTable"
+					maxPages="#{turmaMB.maxPages}"
+					page="#{turmaMB.turmaPage.pageNumber}" reRender="turmaTable"
+					scrollerListener="#{turmaMB.updatePage}" />
+
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					value="#{turmaMB.listaTurma}" rows="#{turmaMB.rows}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="turmaTable">
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NOME" />
+						</f:facet>
+						<a4j:commandLink styleClass="outputText" value="#{element.nome}" action="#{turmaMB.visualizar}">
+							<f:setPropertyActionListener target="#{turmaMB.turma}" value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="DISCIPLINA" />
+						</f:facet>
+						<a4j:commandLink styleClass="outputText" value="#{element.disciplina.nome}" action="#{disciplinaMB.visualizar}">
+							<f:setPropertyActionListener target="#{disciplinaMB.disciplina}" value="#{element.disciplina}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="PROFESSOR" />
+						</f:facet>
+						<a4j:commandLink styleClass="outputText" value="#{element.professor.nome}" action="#{professorMB.visualizar}">
+							<f:setPropertyActionListener target="#{professorMB.professor}" value="#{element.professor}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="LOCAL" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.local}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="HORÁRIO" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.horario}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="LOTAÇÃO" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.lotacaoAtual}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="ALTERAR" />
+						</f:facet>
+						<a4j:commandLink action="#{turmaMB.preAlterar}">
+							<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar Turma"/>
+							<f:setPropertyActionListener target="#{turmaMB.turma}" value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="EXCLUIR" />
+						</f:facet>
+						<a4j:commandLink action="#{turmaMB.preExcluir}">
+							<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" alt="Excluir" title="Excluir Turma" />
+							<f:setPropertyActionListener target="#{turmaMB.turma}" value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+					
+				</rich:dataTable>
+			</rich:panel>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

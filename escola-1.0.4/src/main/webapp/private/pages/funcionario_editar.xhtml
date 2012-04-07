@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line"
+				styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Funcionario" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup
+					rendered="#{funcionarioMB.funcionario.id != null}">
+					<h:commandLink value="Alterar" action="#{funcionarioMB.alterar}" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup
+					rendered="#{funcionarioMB.funcionario.id == null}">
+					<h:commandLink value="Inserir" action="#{funcionarioMB.inserir}" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{funcionarioMB.cancelar}" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<fieldset>
+					<legend> 
+						<h:outputLabel value="Nome" for="funcionario_nome" /> 
+					</legend> 
+					<t:inputText id="funcionario_nome" styleClass="inputText" value="#{funcionarioMB.funcionario.nome}" tabindex="1" size="30"/>
+				</fieldset>
+
+				<fieldset>
+					<legend> 
+						<h:outputLabel value="Nascimento" for="funcionario_nascimento" /> 
+					</legend> 
+					<rich:calendar id="funcionario_nascimento"  value="#{funcionarioMB.funcionario.nascimento}" inputClass="richCalendarInputTextClass"  datePattern="dd/MM/yyyy" tabindex="2"/>
+				</fieldset>
+				
+				<fieldset>
+					<legend> 
+						<h:outputLabel value="Lotacao" for="funcionario_lotacao" /> 
+					</legend> 
+					<t:inputText id="funcionario_lotacao" styleClass="inputText" value="#{funcionarioMB.funcionario.lotacao}" tabindex="3" />
+				</fieldset>
+				
+			</rich:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

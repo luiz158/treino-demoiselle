@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:pinhao="http://www.frameworkpinhao.serpro.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Usuário"/>
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup rendered="#{usuarioMB.usuario.id != null}">
+					<h:commandLink value="Alterar" action="#{usuarioMB.alterar}" title="Alterar Usuário"  />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup rendered="#{usuarioMB.usuario.id == null}">
+					<h:commandLink value="Salvar" action="#{usuarioMB.inserir}" title="Inserir Usuário" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{usuarioMB.cancelar}" title="Voltar para a página de listagem" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<fieldset>
+					<legend> <h:outputLabel value="Nome" for="usuario_nome" /> </legend> 
+					<t:inputText id="usuario_nome" styleClass="inputText" value="#{usuarioMB.usuario.nome}" tabindex="1" /></fieldset>
+
+				<fieldset><legend> <h:outputLabel value="CPF" for="usuario_cpf" /> </legend> <t:inputText
+					id="usuario_cpf" styleClass="inputText" value="#{usuarioMB.usuario.cpf}" tabindex="2"/></fieldset>
+
+				<fieldset><legend> <h:outputLabel value="Login" for="usuario_login" /> </legend> <t:inputText
+					id="usuario_login" styleClass="inputText" value="#{usuarioMB.usuario.login}" tabindex="3"/></fieldset>
+
+				<fieldset><legend> <h:outputLabel value="Senha" for="usuario_senha" /> </legend> <t:inputSecret 
+					id="usuario_senha" styleClass="inputText" value="#{usuarioMB.usuario.senha}" tabindex="4"/></fieldset>
+
+				<fieldset>
+					<legend> 
+					<h:outputLabel value="Tema" for="usuario_tema" /> </legend> 
+					<t:selectOneMenu value="#{usuarioMB.usuario.skin}" tabindex="5" id="usuario_tema">
+						<f:selectItem itemLabel="" itemValue="" />
+						<t:selectItems value="#{escolaMB.skins}" var="element" itemLabel="#{element.name}" itemValue="#{element.name}">
+					</t:selectItems>
+				</t:selectOneMenu>
+				</fieldset>				
+
+			</rich:panel>
+			
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass" rendered="#{usuarioMB.usuario.id != null}">
+				<rich:tabPanel id="painel" styleClass="richTabPanelStyleClass"
+					headerClass="richTabPanelHeaderClass"
+					tabClass="richTabPanelTabClass"
+					activeTabClass="richTabPanelActiveTabClass"
+					inactiveTabClass="richTabPanelInactiveTabClass"
+					disabledTabClass="richTabPanelDisabledTabClass"
+					contentClass="richTabPanelContentClass" 
+					switchType="client">
+					
+						<rich:tab id="tabPapeis" label="Papéis" name="tabPapeis">
+
+						<table width="100%" class="richDataTableStyleClass"
+							summary="Edição de Papeis">
+							<tr>
+								<td colspan="2">
+									<h:outputLabel value="Papel" for="papel_papel" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+								
+									<t:selectOneMenu id="papel_papel" value="#{usuarioMB.detalhepapel.papel}" tabindex="301">
+										<f:selectItem itemLabel="" itemValue="" />
+										<t:selectItems value="#{escolaMB.papeis}" var="element" itemLabel="#{element}" itemValue="#{element}"/>
+									</t:selectOneMenu>
+								</td>
+								<td>
+									<h:commandButton action="#{usuarioMB.incluirPapel}" value="Incluir" rendered="#{usuarioMB.detalhepapel.id == null}" styleClass="inputText" /> 
+									<h:commandButton action="#{usuarioMB.alterarPapel}" value="Alterar" rendered="#{usuarioMB.detalhepapel.id != null}"	styleClass="inputText" />
+								</td>
+							</tr>
+						</table>
+						<rich:dataTable width="100%"
+							styleClass="richDataTableStyleClass"
+							value="#{usuarioMB.usuario.listaPapeis}"
+							headerClass="richDataTableHeaderClass"
+							rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+							columnClasses="richDataTableColumnClass" var="papel"
+							rowKeyVar="row">
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="papels" />
+								</f:facet>
+								<t:outputText styleClass="outputText" value="#{papel.papel}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{usuarioMB.preAlterar}">
+									<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar papel"/>
+									<f:setPropertyActionListener target="#{usuarioMB.detalhepapel}" value="#{papel}" />
+								</a4j:commandLink>
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<t:outputText value="Alterar" />
+								</f:facet>
+								<a4j:commandLink action="#{usuarioMB.removerPapel}">
+									<t:graphicImage value="/private/resources/images/delete.png" width="18" border="0" alt="Excluir" title="Excluir E-mail" />
+									<f:setPropertyActionListener target="#{usuarioMB.detalhepapel}" value="#{papel}" />
+								</a4j:commandLink>
+							</rich:column>
+
+						</rich:dataTable>
+
+					</rich:tab>
+					</rich:tabPanel>
+			</rich:panel>	
+			
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

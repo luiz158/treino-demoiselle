@@ -1,0 +1,45 @@
+.remove-user-icon {
+	background: url(../images/remove-user-icon.png) no-repeat 2%;
+	padding-left: 30px !important;
+}
+
+.add-user-icon {
+	background: url(../images/add-user-icon.png) no-repeat 2%;
+	padding-left: 30px !important;
+}
+
+.user-group-icon {
+	background: url(../images/user-group-icon.png) no-repeat 2%;
+	padding-left: 30px !important;
+}
+
+input {
+	border-width:1px;
+	border-color:#cccccc;
+	border-style:solid;
+	background-color: #f9f9f9;
+	height:30px;
+	font-family:tahoma;
+	color:#353535;
+	font-size: 14px;
+}
+
+.text-input {
+	font-family: tahoma;
+	font-size: 14px;
+	color:#353535;
+}
+
+.br-flag-icon {
+	background: url(../images/brasil.gif) no-repeat;
+	height:11px;
+	width:16px;
+	padding-left: 5px;
+}
+
+.us-flag-icon {
+	background: url(../images/us.gif) no-repeat;
+	height:11px;
+	width:16px;
+	padding-left: 5px;
+}

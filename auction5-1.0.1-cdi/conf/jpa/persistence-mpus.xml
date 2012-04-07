@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_1_0.xsd"
+	version="1.0">
+	
+	<!-- LOCAL CONFIGURATION 2 PU--><!-- 
+	<persistence-unit name="Auction5PU" transaction-type="RESOURCE_LOCAL">
+		<provider>oracle.toplink.essentials.PersistenceProvider</provider>
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>
+		<properties>
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.target-database" value="PostgreSQL" />
+			<property name="toplink.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="toplink.jdbc.url" value="jdbc:postgresql://10.200.239.38:5432/demoiselle_auction" />
+			<property name="toplink.jdbc.user" value="sa" />
+			<property name="toplink.jdbc.password" value="" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="AuditingPU" transaction-type="RESOURCE_LOCAL">
+		<jta-data-source>jdbc/AuditingDB</jta-data-source>
+		<provider>oracle.toplink.essentials.PersistenceProvider</provider>
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+		<properties>
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.target-database" value="PostgreSQL" />
+			<property name="toplink.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="toplink.jdbc.url" value="jdbc:postgresql://10.200.239.38:5432/demoiselle_auditing" />
+			<property name="toplink.jdbc.user" value="sa_auditing" />
+			<property name="toplink.jdbc.password" value="somepass" />
+		</properties>
+	</persistence-unit>
+	-->
+	
+	<!-- LOCAL CONFIGURATION 1 PU--><!-- 
+	<persistence-unit name="Auction5PU" transaction-type="RESOURCE_LOCAL">
+		<provider>oracle.toplink.essentials.PersistenceProvider</provider>
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+		<properties>
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.target-database" value="PostgreSQL" />
+			<property name="toplink.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="toplink.jdbc.url" value="jdbc:postgresql://10.200.239.38:5432/demoiselle_auction_auditing" />
+			<property name="toplink.jdbc.user" value="sa_auditing" />
+			<property name="toplink.jdbc.password" value="somepass" />
+		</properties>
+	</persistence-unit>
+	-->
+	
+	<!-- JTA Configuration 2 PU-->
+	<persistence-unit name="Auction5PU" transaction-type="JTA">
+		<jta-data-source>jdbc/Auction5DB</jta-data-source>
+		<properties>
+			<property name="hibernate.show_sql" value="true"/>  
+			<property name="hibernate.format_sql" value="true"/>  
+			<property name="use_sql_comments" value="true"/>  
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>     
+		</properties>
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>  
+	</persistence-unit>
+	<persistence-unit name="AuditingPU" transaction-type="JTA">
+		<jta-data-source>jdbc/AuditingDB</jta-data-source>
+		<properties>    
+			<property name="hibernate.show_sql" value="true"/>  
+			<property name="hibernate.format_sql" value="true"/>  
+			<property name="use_sql_comments" value="true"/>  
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>     
+		</properties>  
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+	</persistence-unit>
+	
+	<!-- JTA Configuration 1 PU--><!--
+	<persistence-unit name="Auction5PU" transaction-type="JTA">
+		<jta-data-source>jdbc/Auction5SingleDB</jta-data-source>
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+		<properties>
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.target-database" value="PostgreSQL" />
+		</properties>
+	</persistence-unit>
+--></persistence>

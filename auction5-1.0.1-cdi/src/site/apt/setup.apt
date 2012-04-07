@@ -1,0 +1,298 @@
+~~Demoiselle Sample
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Sample is a set of open source Java EE project samples using
+~~the Demoiselle Framework
+~~
+~~Demoiselle Sample is released under the terms of the GPL license 3
+~~http://www.gnu.org/licenses/gpl.html  GPL License 3
+~~
+~~This file is part of Demoiselle Sample.
+~~
+~~Demoiselle Sample is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU General Public License as published by
+~~the Free Software Foundation version 3.
+~~
+~~Demoiselle Sample is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU General Public License for more details.
+~~
+~~You should have received a copy of the GNU General Public License
+~~along with Demoiselle - Sample.  If not, see <http://www.gnu.org/licenses/>
+  
+                                    ------
+                                    Configuração
+                                    
+Configuração
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+  Veja que existem alguns tutoriais relacionados com este projeto disponíveis no
+  {{{http://sourceforge.net/apps/mediawiki/demoiselle-samp/}wiki}}.
+
+
+* {Preparando o ambiente}
+
+** {Requisitos para o desenvovimento}
+
+  * <<Eclipse>> IDE 3.4 Ganymede ou superior - {{{http://www.eclipse.org/}site}}
+  
+  * <<AspectJ>> Development Tools (AJDT) plugin - {{{http://www.eclipse.org/ajdt/}site}}
+  
+  * <<m2eclipse>> plugin para o Maven 2.0 Integration  - {{{http://m2eclipse.sonatype.org/}site}}
+  
+  * <<Subclipse>> plugin para o Subversion (SVN) version control system - {{{http://subclipse.tigris.org/}site}}
+
+  Abaixo está a tela <About Eclipse> com todos os plugins necessários:
+
+[images/eclipse-plugins.png] Eclipse and plugins
+
+
+** {Requisitos para a implantação}
+
+  * <<Apache Tomcat>> 6.0 - {{{http://tomcat.apache.org/}site}}
+  
+  * <<JBoss AS>> 4.2 - {{{http://www.jboss.org/}site}}
+  
+  * <<PostgreSQL>> 8.3 - {{{http://www.postgresql.org/}site}}
+
+
+* {Acessando o código fonte}
+
+** {Repositório Subversion}
+  
+  Faça o download do código fonte do projeto utilizando um cliente SVN com o seguinte endereço:
+  
++----------------------------------------------------------------------------------------+
+https://demoiselle-samp.svn.sourceforge.net/svnroot/demoiselle-samp/trunk/auction5 
++----------------------------------------------------------------------------------------+
+
+  Usando <<Eclipse>> IDE, simplesmente mude para a perspectiva <<SVN Repository Exploring>> e na aba
+  <<SVN Repositories>> adicione o repositório com a seguinte URL: 
+  <<<https://demoiselle-samp.svn.sourceforge.net/svnroot/demoiselle-samp>>>. Depois, expanda a árvore
+  até o ramo <<trunk/auction5>>, clique com o botão direito e selecione o item <<Checkout...>>
+  como demonstrado na figura abaixo:
+  
+[images/svn-checkout-eclipse2.png] SVN Checkout on Eclipse
+
+  O procedimento acima criará um projeto Java Web no workspace atual do Eclipse contendo 
+  o código fonte baixado do repositório SVN.
+  
+
+* {Configurando o banco de dados}
+
+  Antes de tudo, assegure-se que você tem um SGBD relacional disponível para testes.
+  Pergunte ao seu DBA ou instale um por conta própria.
+  
+  Recomendamos utilizar o <<PostgreSQL>>, porém qualquer outro SGBD compatível com Java 
+  (i.e. que possua um driver JDBC) poderá ser utilizado.
+  
+** {Utilizando PostgreSQL}
+  
+  Optando pelo SGBD PostgreSQL, você deverá criar um novo usuário e um novo banco de dados
+  para a aplicação através das seguintes intruções SQL, utilizando o superusuário <<<postgres>>>:
+
++----------------------------------------------------------------------------------------+
+CREATE USER sa_auction5 PASSWORD 'thepass';
+CREATE DATABASE auction5 OWNER sa_auction5 TEMPLATE template0;
++----------------------------------------------------------------------------------------+
+
+  Após isso, retorne para a sua aplicação Java, configure o arquivo <<<persistence.xml>>> e 
+  execute a classe <<<DatabasePopulator>>>. Finalmente crie a estrutura do seu banco de dados
+  e popule todas a tabelas com uma pequena quantidade de dados.
+  
+  Uma alternativa para isso é restaurar o "dump" com dados de exemplo 
+  <<</conf/pgsql/auction5-sample.sql>>> no banco de dados previamente criado. Você poderá fazer isso 
+  alternando para a conta <<<postgres>>> e executando o comando <<<psql>>>, conforme demonstrado abaixo:
+
++----------------------------------------------------------------------------------------+
+# su - postgres
+$ psql auction5 -f auction5-sample.sql
++----------------------------------------------------------------------------------------+
+
+
+* {Configurando a unidade de persistência}
+
+  Ao utilizar JPA, as configurações de persistência devem ser feitas no arquivo <<<persistence.xml>>>,
+  localizado obrigatoriamente na pasta <<<META-INF>>>, disponível no "classpath" da aplicação.
+  
+  Este é o principal arquivo de configuração do JPA, que define, entre outras coisas, a sua implementação, 
+  também conhecida como <<provedor de persistência>>. Alguns <<provedores de persistência>> disponíveis são:
+  Hibernate EntityManager, Oracle TopLink, EclipseLink e Apache OpenJPA.
+  
+  As <<entidades>> gerenciadas por uma unidade de persistência podem ser referenciadas nesse arquivo.
+  Outras configurações de persistência incluem o <<tipo de conexão>> (i.e. JDBC ou DataSource baseado em JNDI),
+  o <<tipo de transação>> (i.e. RESOURCE_LOCAL ou JTA) e parâmetros específicos do provedor.
+
+  Na tabela abaixo estão relacionados alguns provedores com suas respectivas classes de implementação:
+
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+| <<Providor (Implementação)>>  | <<Nome da classe de implementação>>                        | <<Referência>>                                                                     |
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+| Hibernate EntityManager       | org.hibernate.ejb.HibernatePersistence                     | {{{http://docs.jboss.org/hibernate/stable/entitymanager/reference/en/html/}site}} |
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+| Oracle TopLink                | oracle.toplink.essentials.PersistenceProvider              | {{{http://www.oracle.com/technology/products/ias/toplink/JPA/}site}}              |
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+| EclipseLink JPA               | org.eclipse.persistence.jpa.PersistenceProvider            | {{{http://www.eclipse.org/eclipselink/jpa.php}site}}                              |
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+| Apache OpenJPA                | org.apache.openjpa.persistence.PersistenceProviderImpl     | {{{http://openjpa.apache.org/}site}}                                              |
+*-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------+
+<<Provedores de Persistência JPA>>
+
+  Veja que existem vários exemplos de configuração para o arquivo <<<persistence.xml>>> na pasta <<</conf/jpa/>>>.
+  Você precisa simplesmente escolher um deles, renomeá-lo e copiá-lo para <<<META-INF/persistence.xml>>>.
+
+
+** {DataSource no Apache Tomcat}
+
+ Para utilizar um DataSource gerenciado pelo <<Apache Tomcat>>, a primeira coisa a fazer é copiar o driver JDBC
+ desejado (e.g. <<<postgresql-8.3-604.jdbc3.jar>>>) para a pasta <<<TOMCAT_HOME/lib/>>>.
+
+  Então, a configuração do contexto da aplicação (e.g. <<<META-INF/context.xml>>> or <<<TOMCAT_HOME/conf/context.xml>>>)
+  deve ser acrescida das seguintes linhas:
+
++----------------------------------------------------------------------------------------+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+ 	<Resource name="jdbc/Auction5DB" auth="Container" type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver" maxActive="20" maxIdle="10" maxWait="-1"
+		url="jdbc:postgresql://localhost/auction5" username="sa_auction5" password="thepass"/>
+</Context>
++----------------------------------------------------------------------------------------+
+
+  No <<Eclipse>>, simplesmente modifique o arquivo <<<TOMCAT_HOME/server.xml>>> adicionando a tag <Resource>
+  dentro da tag <Context> correspondente a sua aplicação, de acordo com o exemplo abaixo:
+
++----------------------------------------------------------------------------------------+
+<Host appBase="webapps" ...
+
+	<Context docBase="auction5" path="/auction5" reloadable="true" source="org.eclipse.jst.jee.server:auction5">
+		<Resource name="jdbc/Auction5DB" auth="Container" type="javax.sql.DataSource"
+			driverClassName="org.postgresql.Driver" maxActive="20" maxIdle="10" maxWait="-1"
+			url="jdbc:postgresql://localhost/auction5" username="sa_auction5" password="thepass" />
+	</Context>
+	
+</Host>
++----------------------------------------------------------------------------------------+
+
+  Devido a peculiaridades referentes ao processo de "lookup" JNDI no <<Tomcat>>, é necessário definir um 
+  <<SessionCustomizer>> para o provedor de persistência. O <<Auction5>> disponibiliza a classe de exemplo 
+  <<<TopLinkSessionCustomizer>>> projetada para <<Oracle TopLink>> e a classe <<<EclipseLinkSessionCustomizer>>> 
+  para <<EclipseLink JPA>>. 
+
+** {DataSource no JBoss AS}
+
+  Para utilizar o recurso DataSource do <<JBoss Application Server>>, o driver JDBC escolhido
+  (e.g. <<<postgresql-8.3-604.jdbc3.jar>>>) deve ser colocado na pasta
+  <<<JBOSS_HOME/server/default/lib/>>>.
+
+  Posteriormente, crie o arquivo <<<auction5-ds.xml>>> na pasta "deploy" do JBoss AS
+  (i.e. <<<JBOSS_HOME/server/default/deploy/>>>) com o seguinte conteúdo:
+
++----------------------------------------------------------------------------------------+
+<?xml version="1.0" encoding="UTF-8" ?>
+<datasources>
+	<local-tx-datasource>
+		<jndi-name>jdbc/Auction5DB</jndi-name>
+		<connection-url>jdbc:postgresql://localhost/auction5</connection-url>
+		<driver-class>org.postgresql.Driver</driver-class>
+		<user-name>sa_auction5</user-name>
+		<password>thepass</password>
+		<min-pool-size>10</min-pool-size>
+		<max-pool-size>30</max-pool-size>
+		<idle-timeout-minutes>5</idle-timeout-minutes>
+		<prepared-statement-cache-size>32</prepared-statement-cache-size>
+	</local-tx-datasource>
+</datasources>
++----------------------------------------------------------------------------------------+
+  
+  
+* {Configurando o controle de acesso}
+
+  Este projeto está também baseado na especificação de segurança <<Java Authentication and Authorization Security>>
+  ({{{http://jcp.org/en/jsr/detail?id=85}JAAS}}), portanto, para utilizar a aplicação, é necessário configurar
+  previamente alguns parâmetros no servidor de aplicação.
+  
+** {Utilizando Apache Tomcat}
+  
+  A natureza desta configuração está associada ao servidor de aplicação. Por exemplo,
+  usando o <<Apache Tomcat>>, você deverá modificar o arquivo do servidor <<<tomcat-users.xml>>>
+  adicionando as linhas abaixo:
+  
++----------------------------------------------------------------------------------------+
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcat-users>
+	<role rolename="role_admin" />
+	<role rolename="role_user" />
+	<user username="user" fullName="Regular User" password="user" roles="role_user"/>
+	<user username="admin" fullName="Administrator User" password="admin" roles="role_admin"/>
+	<user username="john" fullName="John Doe" password="doe" roles="role_user"/>
+</tomcat-users>  
++----------------------------------------------------------------------------------------+
+  
+** {Utilizando JBoss AS}
+  
+  Por outro lado, se você preferir implantar a aplicação em um 
+  <<JBoss Application Server>>, primeiro acesse a pasta <<<JBOSS_HOME/server/default/conf/>>>.
+  Então, crie ou edite o arquivo <<<defaultUsers.properties>>> com o seguinte conteúdo
+  (i.e. <username=password>):
+  
++----------------------------------------------------------------------------------------+
+admin=admin
+user=user
+john=doe
++----------------------------------------------------------------------------------------+
+
+  Faça o mesmo para o arquivo <<<defaultRoles.properties>>>, porém utilizando as seguintes linhas
+  (i.e. <username=role1,role2>):
+
++----------------------------------------------------------------------------------------+
+admin=role_admin
+user=role_user
+john=role_user
++----------------------------------------------------------------------------------------+
+
+  Note que ambos os arquivos estão baseados no par chave-valor. 
+  
+  Logo após, é preciso associar os papéis às contas de usuário. Se preferir, copie os arquivos 
+  <<<defaultRoles.properties>>> e <<<defaultUsers.properties>>>
+  disponibilizados na pasta <<</conf/>>> para a pasta <<<JBOSS_HOME/server/default/conf/>>>.
+
+* {Escolhendo o servidor de aplicação}
+
+** {Maven profile}
+
+  Certifique-se que você selecionou o <<Maven profile>> correto. Você pode verificar acessando o menu <Maven> 
+  nas propriedade do projeto no Eclipse. Finalmente, no campo "Active Maven Profiles", escolha entre:
+  
+  * "jboss" para <<JBoss AS>>
+  
+  * "tomcat" para <<Apache Tomcat>>
+  
+  Após essa mudança, o projeto deve ser recompilado para que as bibliotecas necessárias e suas dependências
+  sejam atualizadas.
+  
+** {Provedor de Persistência}
+
+  O provedor de persistência mais adequado para o <<JBoss AS>> é o <<Hibernate EntityManager>>, já que ele é distribuído 
+  como parte integrante das bibliotecas do servidor JBoss. Por outro lado, para o <<Apache Tomcat>> ou o <<Glassfish>>
+  você poderá optar entre <<Oracle TopLink>>, <<EclipseLink JPA>> ou <<Apache OpenJPA>>.
+  
+  Dependendo do servidor escolhido, siga as instruções abaixo:
+  
+  * <<JBoss AS>>: renomeie o arquivo <<<META-INF/persistence-jboss.xml>>> para <<<META-INF/persistence.xml>>> 
+  
+  * <<Apache Tomcat>>: renomeie o arquivo <<<META-INF/persistence-tomcat.xml>>> para <<<META-INF/persistence.xml>>>
+  
+** {Named Parameters nas Queries nativas}
+  
+  Tome cuidado especial quando utilizar <<named parameters>> nas <<queries nativas>>, devido a diferentes 
+  interpretações de provedores de persistência. No <<Hibernate EntityManager>> ":" é utilizado para representar
+  um <<named parameter>>, enquanto "?" é o símbolo esperado no <<Oracle TopLink>> e no <<EclipseLink JPA>>.
+  
+  Mais detalhes podem ser encontrados no método <listCheapestPriceAuctions()> dentro da classe
+  <<<br.gov.sample.demoiselle.auction5.persistence.dao.implementation.AuctionDAO>>>. Lembre-se de modificá-lo de acordo com 
+  sua necessidade.

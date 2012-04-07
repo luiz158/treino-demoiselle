@@ -1,0 +1,68 @@
+~~ Demoiselle Framework
+~~ Copyright (C) 2010 SERPRO
+~~ ----------------------------------------------------------------------------
+~~ This file is part of Demoiselle Framework.
+~~ 
+~~ Demoiselle Framework is free software; you can redistribute it and/or
+~~ modify it under the terms of the GNU General Public License version 2
+~~ as published by the Free Software Foundation.
+~~ 
+~~ This program is distributed in the hope that it will be useful,
+~~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~ GNU General Public License for more details.
+~~ 
+~~ You should have received a copy of the GNU General Public License
+~~ along with this program; if not,  see <http://www.gnu.org/licenses/>
+~~ or write to the Free Software Foundation, Inc., 51 Franklin Street,
+~~ Fifth Floor, Boston, MA  02110-1301, USA.
+~~ ----------------------------------------------------------------------------
+~~ Este arquivo é parte do Framework Demoiselle.
+~~ 
+~~ O Framework Demoiselle é um software livre; você pode redistribuí-lo e/ou
+~~ modificá-lo dentro dos termos da Licença Pública Geral GNU como publicada pela Fundação
+~~ do Software Livre (FSF); na versão 2 da Licença.
+~~ 
+~~ Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA
+~~ GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou
+~~ APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU/GPL em português
+~~ para maiores detalhes.
+~~ 
+~~ Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título
+~~ "LICENCA.txt", junto com esse programa. Se não, acesse o Portal do Software Público
+~~ Brasileiro no endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software
+~~ Livre (FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA 02111-1301, USA.
+  
+                                    ------
+                                    Sobre o ContactList Core
+                                    
+Sobre o Contact List
+  
+  <<ContactList>> é a aplicação de exemplo do <<Demoiselle>> em sua versão 2.0. Esta aplicação visa explorar a utilização da grande maioria dos recursos disponíveis
+  nesta versão do framework, servindo como um ponto de partida para o seu aprendizado. A aplicação ContactList está dividida, inicialmente, em três partes:
+  Core, Swing e JSF. A primeira mantém o núcleo da aplicação, contendo, basicamente, as regras de negócio. A segunda é uma implementação da ContactList 
+  em ambiente Swing, enquanto a última é a implementação da aplicação em ambiente JSF 2.0.
+  
+  A ContactList é uma aplicação simples de lista de contatos, contendo, basicamente, o cadastro de Contatos e Grupos. Esta documentação refere-se ao núcleo da aplicação e contém
+  as entidades, regras de negócio e a camada de persistência, que usa JPA 2.0. 
+
+  O objetivo desta aplicação é servir de guia e ponto de partida para aquelas pessoas que desejam ver 
+  o <<Demoiselle 2.0>> em ação. Outro objetivo é também demonstrar as funcionalidades
+  que existem nesta nova versão do framework e que podem ser aproveitadas na construção de sua 
+  própria aplicação. No <<Core>> da ContactList estão implementadas as regras de negócio
+  que usam bastante a injeção de dependência do CDI, em sua implementação de referência 
+  chamada <<Weld>>. Para a persistência da aplicação utiliza-se o banco de dados, o provedor de 
+  EntityManager do Hibernate em conjunto com o <<JPA2.0>>. 
+  
+  A camada de apresentação do ContactList está replicada em duas plataformas <<JSF2>> e <<Swing>>, mostrando
+  a flexibilidade do framework na criação de novas camadas de apresentação.
+  
+  <<Instalação>>
+
+  Para instalar o projeto é necessário baixar o projeto no repositório. Em seguida é necessário 
+  adicionar o projeto no servidor.
+  
+  No blog do demoiselle: http://blog.frameworkdemoiselle.gov.br você pode encontrar posts que ensinam 
+  passo a passo como instalar o contactlist em sua IDE.  
+ 
+  

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>	
+			<rich:panel styleClass="richPanelBodyClass">
+			 
+		
+			<fieldset>
+			<legend><h:outputLabel value="Selecione um Tema" for="usuario_skin" /></legend>
+				<t:selectOneMenu value="#{usuarioMB.usuario.skin}" title="Selecione um tema" tabindex="1" id="usuario_skin" >
+					<a4j:support event="onchange" action="#{usuarioMB.alterarSkin}" oncomplete="javascript:document.location.reload()"/>
+					<f:selectItem itemLabel="" itemValue="" />		
+					<t:selectItems value="#{escolaMB.skins}"  var="tema" itemLabel="#{tema.description}" itemValue="#{tema.key}"></t:selectItems>		
+				</t:selectOneMenu>
+			</fieldset>
+			
+			<table border="0" class="richPanelBodyClass">
+				<tr>
+					<td>
+						<h:outputLabel value="Tema Azul"/>
+					</td>
+					<td>
+						<h:outputLabel value="Tema Laranja"/>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<t:graphicImage value="/private/resources/images/tema_azul.png" border="0" alt="" title="Tema Azul"/>
+					</td>
+					<td>
+						<t:graphicImage value="/private/resources/images/tema_laranja.png" border="0" alt="" title="Tema Laranja"/>
+					</td>
+				</tr>
+			</table>
+			</rich:panel>
+
+		</h:form>
+	</ui:define>	
+</ui:composition>
+</html>

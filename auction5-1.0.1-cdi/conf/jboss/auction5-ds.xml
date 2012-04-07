@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<datasources>
+	<local-tx-datasource>
+		<jndi-name>jdbc/Auction5DB</jndi-name>
+		<connection-url>jdbc:postgresql://localhost/auction5</connection-url>
+		<driver-class>org.postgresql.Driver</driver-class>
+		<user-name>sa_auction5</user-name>
+		<password>thepass</password>
+		<min-pool-size>10</min-pool-size>
+		<max-pool-size>30</max-pool-size>
+		<idle-timeout-minutes>5</idle-timeout-minutes>
+		<prepared-statement-cache-size>32</prepared-statement-cache-size>
+	</local-tx-datasource>
+</datasources>

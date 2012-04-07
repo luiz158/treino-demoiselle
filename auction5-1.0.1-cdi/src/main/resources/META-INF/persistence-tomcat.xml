@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence persistence_1_0.xsd" version="1.0">
+	
+	<persistence-unit name="Auction5PU" transaction-type="RESOURCE_LOCAL">
+	
+		<!-- JPA Provider Definition -->
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!--<provider>oracle.toplink.essentials.PersistenceProvider</provider>-->
+		
+		<non-jta-data-source>java:comp/env/jdbc/Auction5DB</non-jta-data-source>
+		
+		<class>br.gov.sample.demoiselle.auction5.bean.Auction</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Bid</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Category</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Item</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Order</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.Status</class>
+		<class>br.gov.sample.demoiselle.auction5.bean.audit.BidAudit</class>
+		
+		<!-- EclipseLink JPA Settings -->
+		<properties>
+			<property name="eclipselink.target-database" value="PostgreSQL" />
+			<property name="eclipselink.logging.level" value="FINE" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
+			<property name="eclipselink.session.customizer" value="br.gov.sample.demoiselle.auction5.persistence.config.EclipseLinkSessionCustomizer" />
+		</properties>
+		
+		<!-- Oracle TopLink Settings -->
+		<!-- 
+		<properties>
+			<property name="toplink.target-database" value="PostgreSQL" />
+			<property name="toplink.logging.level" value="FINE" />
+			<property name="toplink.ddl-generation" value="create-tables" />
+			<property name="toplink.ddl-generation.output-mode" value="database" />
+			<property name="toplink.session.customizer" value="br.gov.sample.demoiselle.auction5.persistence.config.TopLinkSessionCustomizer" />
+		</properties>
+		 -->
+		
+	</persistence-unit>
+	
+</persistence>

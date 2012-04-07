@@ -1,0 +1,100 @@
+~~Demoiselle Sample
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Sample is a set of open source Java EE project samples using
+~~the Demoiselle Framework
+~~
+~~Demoiselle Sample is released under the terms of the GPL license 3
+~~http://www.gnu.org/licenses/gpl.html  GPL License 3
+~~
+~~This file is part of Demoiselle Sample.
+~~
+~~Demoiselle Sample is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU General Public License as published by
+~~the Free Software Foundation version 3.
+~~
+~~Demoiselle Sample is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU General Public License for more details.
+~~
+~~You should have received a copy of the GNU General Public License
+~~along with Demoiselle - Sample.  If not, see <http://www.gnu.org/licenses/>
+  
+                                    ------
+                                    Documentação
+                                    
+Documentação
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+
+* {Visão Geral}
+
+  <<Auction5>> é um exemplo de aplicação Web na estrutura MVC de um sistema de leilão online
+  utilizando o <<Demoiselle Framework>> e outras tecnologias relacionadas. Seu principal objetivo é demonstrar 
+  uma aplicação transacional completa baseada nas especificações <<JavaServer Faces>> ({{{http://jcp.org/en/jsr/detail?id=127}JSF 1.2}})
+  e <<Java Persistence API>> ({{{http://jcp.org/en/jsr/detail?id=220}JPA 1.0}})
+
+* {Telas}
+
+** {Tela principal}
+
+[images/auction5-home-r.png] Tela principal
+
+** {Listagem de leilões}
+
+[images/auction5-auctions-r.png] Listagem de leilões
+
+** {Dando um lance}
+
+[images/auction5-placingbid-r.png] Dando um lance
+
+** {Gerenciando itens}
+
+[images/auction5-items-r.png] Gerenciando itens
+
+* {Detalhes técnicos}
+
+** {Arquitetura de Referência}
+  
+  <<Auction5>> usa a arquitetura de referência do <<Demoiselle Framework>>, incluindo sua nova camada de persitência baseada em <<Java Persistence API>> (JPA).
+  
+** {Papéis}
+
+  Existem três papéis disponíveis para a aplicação:
+  
+  * <<Usuário>>: um usuário comum que usa a aplicação para negociar itens
+  
+  * <<Administrador>>: um usuário restrito que gerencia categorias e itens
+  
+  * <<Sistema>>: uma conta única reservada para processar tarefas internas do sistema
+  
+** {Caso de Uso}
+
+  Atualmente a aplicação contempla o seguinte caso de uso:
+
+[images/auction5-usecases.png] Caso de uso
+
+** {Modelo de Dados}
+
+  Abaixo seguem as entidades Java utilizadas na aplicação:
+
+[images/auction5-entities.png] Entidades
+
+  * <<Auction>>: representa uma negociação de um determinado item, i.e. um leilão ou uma venda comum
+  
+  * <<Bid>>: representa um ou mais lances dados em um determinado leilão
+  
+  * <<Category>>: representa a categoria de um item 
+  
+  * <<Item>>: representa um objeto que será negociado no leilão ou em uma venda comum
+  
+  * <<Mode>>: uma "enumeration" para diferenciar modalidades de negociação
+  
+  * <<Order>>: representa um pedido de compra criado ao final da negociação de um item
+  
+  * <<Status>>: uma "enumeration" para controlar o estado de uma negociação (e.g. aberta, concluída ou finalizada)
+  

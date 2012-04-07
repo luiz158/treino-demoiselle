@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Funcionário" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{funcionarioMB.preInserir}" title="Cadastrar novo funcionario"/>
+				</rich:toolBarGroup>	
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{funcionarioMB.listar}" title="Listar Funcionários"/>
+				</rich:toolBarGroup>			
+				
+				<rich:toolBarGroup location="right">
+					<t:inputText styleClass="inputText" binding="#{funcionarioMB.txtFiltro}" title="Informe o nome do funcionario a ser procurada" />
+					<h:commandLink action="#{funcionarioMB.filtrar}" title="Filtra Funcionários">
+						<t:graphicImage value="/private/resources/images/find.png" alt="Filtrar" width="25" border="0" styleClass="outputText" align="center" title="Filtrar" />
+					</h:commandLink>
+				</rich:toolBarGroup>
+				
+			</rich:toolBar>
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputText value="Total de Registros: " />
+				<h:outputText value="#{funcionarioMB.totalRegistros}" />
+
+				<rich:datascroller align="center" for="funcionarioTable"
+					maxPages="#{funcionarioMB.maxPages}"
+					reRender="funcionarioTable" />
+
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					value="#{funcionarioMB.listaFuncionario}" rows="#{funcionarioMB.rows}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="funcionarioTable" >
+
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NOME" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.nome}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NASCIMENTO" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.nascimento}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="LOTAÇÃO" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.lotacao}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Alterar" />
+						</f:facet>
+						<a4j:commandLink action="#{funcionarioMB.preAlterar}">
+							<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Editar"  title="Alterar Funcionário"/>
+							<f:setPropertyActionListener target="#{funcionarioMB.funcionario}" value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink action="#{funcionarioMB.preExcluir}">
+							<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" alt="Excluir" title="Excluir Funcionário"/>
+							<f:setPropertyActionListener target="#{funcionarioMB.funcionario}"
+								value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+				</rich:dataTable>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

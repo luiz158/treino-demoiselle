@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui" xmlns:rich="http://richfaces.org/rich"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:dataTable id="list" height="300" var="bean" value="#{auditMB.dataModel}" lazy="true" paginator="true"
+				rows="#{auditMB.pagination.pageSize}" pageLinks="#{paginationConfig.maxPageLinks}"
+				rendered="#{securityContext.hasPermission('audit', 'view')}">
+				<f:facet name="header">#{messages['audit.list.table.title']}</f:facet>
+				<p:column style="width:5%;">
+					<f:facet name="header">#{messages['audit.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">#{messages['audit.label.message']}</f:facet>
+					<h:outputText value="#{bean.message}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

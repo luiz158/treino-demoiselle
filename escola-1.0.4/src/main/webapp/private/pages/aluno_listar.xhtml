@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line"
+				styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Aluno" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{alunoMB.preInserir}"
+						title="Inserir Aluno" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{alunoMB.listar}"
+						title="Listar Alunos" />
+				</rich:toolBarGroup>
+
+				<rich:toolBarGroup location="right">
+					<t:inputText styleClass="inputText" binding="#{alunoMB.txtFiltro}" title="Informe o nome do aluno procurado" />
+					<a4j:commandLink action="#{alunoMB.filtrar}" title="Filtra Alunos">
+						<t:graphicImage value="/private/resources/images/find.png"
+							alt="Filtrar" width="25" border="0" styleClass="outputText"
+							align="center" title="Filtrar" />
+					</a4j:commandLink>
+				</rich:toolBarGroup>
+				
+			</rich:toolBar>
+
+
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputText value="Total de Registros: " />
+				<h:outputText value="#{alunoMB.listaAluno.rowCount}" />
+
+				<rich:datascroller align="center" for="alunoTable"
+					maxPages="#{alunoMB.maxPages}"
+					page="#{alunoMB.alunoPage.pageNumber}" reRender="alunoTable"
+					scrollerListener="#{alunoMB.updatePage}" />
+
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					rows="#{alunoMB.rows}" value="#{alunoMB.listaAluno}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="alunoTable" summary="Lista de Alunos">
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NOME" />
+						</f:facet>
+						<a4j:commandLink styleClass="outputText" value="#{element.nome}"
+							action="#{alunoMB.visualizar}">
+							<f:setPropertyActionListener target="#{alunoMB.aluno}"
+								value="#{element}" />
+						</a4j:commandLink>
+
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NASCIMENTO" />
+						</f:facet>
+						<t:outputText styleClass="outputText"
+							value="#{element.nascimento}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="PAI" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.pai}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="MÃE" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.mae}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="ALTERAR" />
+						</f:facet>
+
+						<a4j:commandLink action="#{alunoMB.preAlterar}">
+							<t:graphicImage value="/private/resources/images/edit.png"
+								width="15" alt="Editar" title="Alterar Aluno" border="0" />
+							<f:setPropertyActionListener target="#{alunoMB.aluno}"
+								value="#{element}" />
+						</a4j:commandLink>
+
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="EXCLUIR" />
+						</f:facet>
+						<a4j:commandLink value="" action="#{alunoMB.preExcluir}">
+							<t:graphicImage value="/private/resources/images/delete.png"
+								width="15" alt="Excluir" title="Excluir" border="0" />
+							<f:setPropertyActionListener target="#{alunoMB.aluno}"
+								value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+				</rich:dataTable>
+			</rich:panel>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

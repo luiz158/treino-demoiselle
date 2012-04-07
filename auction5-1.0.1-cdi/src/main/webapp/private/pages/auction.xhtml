@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:t="http://myfaces.apache.org/tomahawk"
+	  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	  xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	  
+	<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputLabel for="category" value=" Select a category: " styleClass="" />
+                <h:selectOneMenu id="category" value="#{auctionMB.category.id}" valueChangeListener="#{auctionMB.actionLoadListItemsByCategory}">
+                    <f:selectItems value="#{auctionMB.listCategories}" />
+                    <a4j:support event="onchange" reRender="auctionsTable" />                    
+                </h:selectOneMenu>
+                   
+               <rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					rows="#{auctionMB.rows}" value="#{auctionMB.listAuctions}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="auctionsTable" summary="List of Auctions by Category">					
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Product" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.item.description}"/>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Price" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.bestBidOrStartingPrice}" rendered="#{element.auction}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+						</t:outputText>
+						<t:outputText rendered="#{element.auction and element.buy}"><br/></t:outputText>
+						<t:outputText styleClass="outputText" value="#{element.sellingPrice}" rendered="#{element.buy}">
+							<f:convertNumber currencySymbol="$" groupingUsed="true" maxFractionDigits="2" type="currency"/>
+						</t:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="" />
+						</f:facet>
+						<a4j:commandLink value="Place a Bid" action="#{bidMB.actionPreBid}" rendered="#{element.auction}">
+							<f:setPropertyActionListener target="#{bidMB.auction}" value="#{element}" />
+						</a4j:commandLink>
+						<t:outputText rendered="#{element.auction and element.buy}"><br/></t:outputText>
+						<a4j:commandLink value="Buy It Now" action="#{orderMB.actionPreOrder}" rendered="#{element.buy}">						    							
+							<f:setPropertyActionListener target="#{orderMB.auction}" value="#{element}" />													
+						</a4j:commandLink>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="History" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.numberBidsFormatted}"/>												
+					</rich:column>					
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Time Left" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.deadline}">
+							<f:converter converterId="timeLeftConverter"/>
+						</t:outputText>
+						<c:if test="#{not empty element.deadline}">
+							<t:outputText value=" ("/>
+							<t:outputText value="#{element.deadline}">
+								<f:convertDateTime type="both" />
+							</t:outputText>
+							<t:outputText value=")"/>
+						</c:if>
+					</rich:column>
+				</rich:dataTable>
+				
+			</rich:panel>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+	
+</html>

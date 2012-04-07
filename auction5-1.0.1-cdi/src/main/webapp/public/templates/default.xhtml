@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<head>
+	<title><ui:insert name="title">auction5</ui:insert></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<f:view>
+	<demoiselle:useJs all="true"/>
+	<demoiselle:useSkin/>	
+	<f:loadBundle basename="auctionViewMessage" var="msg"/>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="Logo Demoiselle" style="background-image: url('./../../public/resources/images/logo-b.png')">
+		<tr>
+			<td align="left">
+				<h:graphicImage value="/public/resources/images/logo-l.png" alt=""/>
+			</td>
+			<td align="right">
+				<h:graphicImage value="/public/resources/images/logo-r.png" alt="" />				
+			</td>
+		</tr>	
+	</table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="Welcome" >	
+		<tr>
+			<td>
+				<ui:insert name="navegation">
+					<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+						<h:outputText value="Welcome, #{userMB.userName}!" />
+					</rich:panel>
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="menu">
+					<h:form>
+						<rich:toolBar height="34" itemSeparator="grid" styleClass="richPanelBodyClass" >
+						
+							<!-- if user not logged in -->
+							<rich:toolBarGroup>
+								<h:commandLink value="Home" title="Home" action="home" />
+								<h:commandLink value="Sign in" title="Sign in to this application" action="HOME" rendered="#{!userMB.isLoggedIn}"/>
+							</rich:toolBarGroup>
+
+							<!-- if a regular user -->
+							<rich:toolBarGroup rendered="#{userMB.isRegularUser}">
+                                <h:commandLink value="Open Auctions" action="#{auctionMB.listOpenAuctions}" title="List open auctions (F2)" id="uF2" />
+                                <h:commandLink value="My Orders" action="#{orderMB.listUserOrders}" title="List my orders (F3)" />
+                            </rich:toolBarGroup>
+
+                            <!-- if a super user -->
+							<rich:toolBarGroup rendered="#{userMB.isAdminUser}">
+                                <h:commandLink value="Categories" action="#{categoryMB.list}" title="List categories (F2)" id="aF2" />
+                                <h:commandLink value="Items" action="#{itemMB.list}" title="List items (F3)" id="aF3" />
+                                <!-- 
+                                <h:commandLink value="Orders" action="#{orderMB.list}" title="List orders (F4)" id="aF4" />
+                                <h:commandLink value="Auctions" action="#{auctionMB.list}" title="List auctions (F5)" id="aF5" />
+                                 -->
+                            </rich:toolBarGroup>
+                            
+							<!-- if a regular or super user -->
+							<rich:toolBarGroup rendered="#{userMB.isLoggedIn}">
+								<a4j:commandLink value="Logoff" action="#{userMB.logout}" oncomplete="javascript:logout()" title="Logoff" id="uaF12" />
+							</rich:toolBarGroup>
+                            
+					</rich:toolBar>
+					</h:form>
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="message">
+				       <h:messages globalOnly="true" errorClass="errorFatalMessage" fatalClass="errorFatalMessage" infoClass="infoMessage" warnClass="warnMessage" showSummary="true" showDetail="false" />
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="body">
+				</ui:insert>
+			</td>
+		</tr>
+	</table>
+</f:view>
+</body>
+</html>

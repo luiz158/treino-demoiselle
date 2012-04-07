@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <daos>
+    <dao>
+      <packageName>br.gov.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.demoiselle.escola.bean.Aluno</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Disciplina</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Funcionario</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Nota</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Professor</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Turma</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Usuario</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.PapelUsuario</fullName>
+      </pojo>
+    </dao>
+    <dao>
+      <packageName>br.gov.sample.demoiselle.escola.persistence.dao</packageName>
+      <type>Hibernate</type>
+      <pojo>
+        <fullName>br.gov.sample.demoiselle.escola.bean.Endereco</fullName>
+      </pojo>
+    </dao>
+  </daos>
+  <bcs />
+  <beans />
+  <facades />
+</project>
+

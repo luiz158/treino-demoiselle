@@ -1,0 +1,217 @@
+<!--
+ Demoiselle Framework
+ Copyright (C) 2010 SERPRO
+ ============================================================================
+ This file is part of Demoiselle Framework.
+ 
+ Demoiselle Framework is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License version 2
+ as published by the Free Software Foundation.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not,  see <http://www.gnu.org/licenses/>
+ or write to the Free Software Foundation, Inc., 51 Franklin Street,
+ Fifth Floor, Boston, MA  02110-1301, USA.
+ ============================================================================
+ Este arquivo é parte do Framework Demoiselle.
+ 
+ O Framework Demoiselle é um software livre; você pode redistribuí-lo e/ou
+ modificá-lo dentro dos termos da Licença Pública Geral GNU como publicada pela Fundação
+ do Software Livre (FSF); na versão 2 da Licença.
+ 
+ Este programa é distribuído na esperança que possa ser útil, mas SEM NENHUMA
+ GARANTIA; sem uma garantia implícita de ADEQUAÇÃO a qualquer MERCADO ou
+ APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU/GPL em português
+ para maiores detalhes.
+ 
+ Você deve ter recebido uma cópia da Licença Pública Geral GNU, sob o título
+ "LICENCA.txt", junto com esse programa. Se não, acesse o Portal do Software Público
+ Brasileiro no endereço www.softwarepublico.gov.br ou escreva para a Fundação do Software
+ Livre (FSF) Inc., 51 Franklin St, Fifth Floor, Boston, MA 02111-1301, USA.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.gov.frameworkdemoiselle.sample</groupId>
+	<artifactId>contactlist-jsf-integration-tests</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium</artifactId>
+			<version>2.0a7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>2.0a7</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>cuke4duke</groupId>
+			<artifactId>cuke4duke</artifactId>
+			<version>${cuke4duke.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>${groovy-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.easyb</groupId>
+			<artifactId>easyb</artifactId>
+			<version>${easyb-version}</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<cuke4duke.version>0.4.3</cuke4duke.version>
+		<groovy-version>1.7.5</groovy-version>
+		<java-version>1.6</java-version>
+		<groovy-version>1.7.5</groovy-version>
+		<gmaven-version>1.2</gmaven-version>
+		<junit-version>4.8.1</junit-version>
+		<easyb-version>0.9.8</easyb-version>
+	</properties>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>cukes</id>
+			<url>http://cukes.info/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>codehaus</id>
+			<url>http://repository.codehaus.org</url>
+		</repository>
+		<repository>
+			<id>cukes</id>
+			<url>http://cukes.info/maven</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<!-- BEGIN GMAVEN RESOURCES -->
+		<!-- These resources are needed to integrate the gmaven plugin with the source plugin -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+			</resource>
+			<resource>
+				<directory>src/main/groovy</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/java</directory>
+			</testResource>
+			<testResource>
+				<directory>src/test/groovy</directory>
+			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+		<!-- END GMAVEN RESOURCES -->
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.0.2</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>cuke4duke</groupId>
+				<artifactId>cuke4duke-maven-plugin</artifactId>
+				<version>0.4.2</version>
+				<configuration>
+					<cucumberArgs>
+						<cucumberArg>--color</cucumberArg>
+						<cucumberArg>--verbose</cucumberArg>
+						<cucumberArg>--strict</cucumberArg>
+						<cucumberArg>--guess</cucumberArg>
+						<cucumberArg>--backtrace</cucumberArg>
+					</cucumberArgs>
+					<gems>
+						<gem>install cuke4duke --version ${cuke4duke.version}</gem>
+					</gems>
+				</configuration>
+				<executions>
+					<execution>
+						<id>run-features</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>cucumber</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+				<version>${gmaven-version}</version>
+				<configuration>
+					<providerSelection>1.7</providerSelection>
+					<source />
+					<targetBytecode>${java-version}</targetBytecode>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.gmaven.runtime</groupId>
+						<artifactId>gmaven-runtime-1.7</artifactId>
+						<version>${gmaven-version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>org.codehaus.groovy</groupId>
+								<artifactId>groovy-all</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.codehaus.groovy</groupId>
+						<artifactId>groovy-all</artifactId>
+						<version>${groovy-version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

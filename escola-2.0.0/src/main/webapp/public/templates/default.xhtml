@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><ui:insert name="title">${artifactId}</ui:insert></title>
+</head>
+<body>
+<f:view>	
+	<demoiselle:useJs all="true"/>
+	<demoiselle:useSkin/>
+	<f:loadBundle basename="facesMessage" var="msg"/>	
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="Logo Demoiselle" style="background-image: url('./../../public/resources/images/logo-b.png')">
+		<tr>
+			<td align="left">
+				<h:graphicImage  value="/public/resources/images/logo-l.png" alt="Framework Demoiselle" title="Framework Demoiselle" />
+			</td>
+			<td align="right">
+				<h:graphicImage value="/public/resources/images/logo-r.png" alt="" />				
+			</td>
+		</tr>	
+	</table>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" summary="Aplicação Escola" >
+		<tr>
+			<td><ui:insert name="navegation">
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+					<h:outputText value="Seja bem vindo, " />
+					<h:outputText value="#{usuarioMB.principalNome}" />
+					<h:outputText value="! Seu último login foi em " />
+					<h:outputText value="#{escolaMB.ultimoLogin}" />
+				</rich:panel>
+			</ui:insert></td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="menu">
+					<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass" >
+						<h:form>
+						
+							<rich:toolBarGroup rendered="#{usuarioMB.isAdministrador}">
+								<h:commandLink value="#{msg.out_alunos}" action="#{alunoMB.listar}" title="Cadastro de Aluno (F2)" id="F2" />
+							</rich:toolBarGroup>
+							
+							<rich:toolBarGroup rendered="#{false and usuarioMB.isAdministrador}">
+								<h:commandLink value="#{msg.out_usuarios}" action="#{usuarioMB.listar}" title="Cadastro de Usuários (F3)" id="F3" />
+							</rich:toolBarGroup>
+							 
+							<rich:toolBarGroup rendered="#{usuarioMB.isAdministrador}">
+								<h:commandLink value="Professores" action="#{professorMB.listar}" title="Cadastro de Professores (F4)" id="F4"/>
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup rendered="#{usuarioMB.isAdministrador}">
+								<h:commandLink value="Disciplinas" action="#{disciplinaMB.listar}" title="Cadastro de Disciplinas (F6)" id="F6"/>
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup rendered="#{usuarioMB.isAdministrador}">
+								<h:commandLink value="Turmas" action="#{turmaMB.listar}" title="Cadastro de Turmas (F7)" id="F7"/>
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup rendered="#{usuarioMB.isProfessor}">
+								<h:commandLink value="Lançar Notas" action="#{notaMB.listar}"  title="Cadastro de Notas (F8)" id="F8"/>
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup rendered="#{usuarioMB.isAluno}">
+								<h:commandLink value="Consultar Nota" action="#{notaMB.mostrarNota}" title="Consultar Notas"/>
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup rendered="#{usuarioMB.isAdministrador}">
+								<h:commandLink value="Funcionários" action="#{funcionarioMB.listar}" title="Cadastro de Funcionários (F9)" id="F9" />
+							</rich:toolBarGroup>
+
+							<rich:toolBarGroup>
+								<h:commandLink value="Relatórios" action="#{escolaMB.relatorio}" title="Emissão de Relatórios (F10)" id="F10" />
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup>
+								<h:commandLink value="Tema" action="#{escolaMB.listarSkin}" title="Configuração de Temas (F11)" id="F11" />
+							</rich:toolBarGroup>
+	
+							<rich:toolBarGroup>
+								<a4j:commandLink value="Sair" action="#{escolaMB.sair}" oncomplete="javascript:logout()"  title="Sair da Aplicação (F12)" id="F12" />
+							</rich:toolBarGroup>
+
+							<rich:toolBarGroup>
+								<a4j:commandLink value="Tratamento na excecao" action="#{newFeaturesMB.geraExcecaoClasse}" title="Tratamento na excecao"/>
+							</rich:toolBarGroup>
+							
+							<rich:toolBarGroup>
+								<a4j:commandLink value="Tratamento no metodo" action="#{newFeaturesMB.geraExcecaoMetodo}" title="Tratamento no metodo"/>
+							</rich:toolBarGroup>
+							
+							<rich:toolBarGroup>
+								<a4j:commandLink value="Exibe mensagens" action="#{newFeaturesMB.geraMensagens}" title="Gera mensagens"/>
+							</rich:toolBarGroup>
+							
+						</h:form>
+					</rich:toolBar>
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="message">
+				       <h:messages globalOnly="true" errorClass="errorFatalMessage" fatalClass="errorFatalMessage" infoClass="infoMessage" warnClass="warnMessage" showSummary="true" showDetail="false" />
+				</ui:insert>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ui:insert name="body">
+				</ui:insert>
+			</td>
+		</tr>
+	</table>
+</f:view>
+</body>
+</html>

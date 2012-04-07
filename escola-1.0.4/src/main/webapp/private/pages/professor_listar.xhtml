@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Professor" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Incluir" action="#{professorMB.preInserir}" title="Inserir novo Professor"/>
+				</rich:toolBarGroup>		
+				
+				<rich:toolBarGroup>
+					<h:commandLink value="Listar" action="#{professorMB.listar}" title="Listar Professores"/>
+				</rich:toolBarGroup>		
+				
+				<rich:toolBarGroup location="right">
+					<t:inputText styleClass="inputText" binding="#{professorMB.txtFiltro}" title="Informe o nome do professor a ser procurado" />
+					<a4j:commandLink action="#{professorMB.filtrar}" title="Filtra Professores">
+						<t:graphicImage value="/private/resources/images/find.png"
+							alt="Filtrar" width="25" border="0" styleClass="outputText"
+							align="center" title="Filtrar" />
+					</a4j:commandLink>
+				</rich:toolBarGroup>
+				
+				
+			</rich:toolBar>
+			<rich:panel styleClass="richPanelStyleClass"
+				bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+
+				<h:outputText value="Total de Registros: " />
+				<h:outputText value="#{professorMB.listaProfessor.rowCount}" />
+
+				<rich:datascroller align="center" for="professorTable"
+					maxPages="#{professorMB.maxPages}"
+					page="#{professorMB.professorPage.pageNumber}"
+					reRender="professorTable"
+					scrollerListener="#{professorMB.updatePage}" />
+
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					value="#{professorMB.listaProfessor}" rows="#{professorMB.rows}"
+					headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="element"
+					rowKeyVar="row" id="professorTable">
+
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="NOME" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{element.nome}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Alterar" />
+						</f:facet>
+						<a4j:commandLink action="#{professorMB.preAlterar}">
+							<t:graphicImage value="/private/resources/images/edit.png" width="15" border="0" alt="Alterar" title="Alterar Professor"/>
+							<f:setPropertyActionListener target="#{professorMB.professor}" value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Excluir" />
+						</f:facet>
+						<a4j:commandLink action="#{professorMB.preExcluir}">
+							<t:graphicImage value="/private/resources/images/delete.png" width="15" border="0" align="Excluir" title="Excluir Professor"/>
+							<f:setPropertyActionListener target="#{professorMB.professor}"
+								value="#{element}" />
+						</a4j:commandLink>
+					</rich:column>
+
+				</rich:dataTable>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

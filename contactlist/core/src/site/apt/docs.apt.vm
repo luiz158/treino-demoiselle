@@ -1,0 +1,60 @@
+~~Demoiselle Framework
+~~Copyright (c) 2009 Serpro and other contributors as indicated
+~~by the @author tag. See the copyright.txt in the distribution for a
+~~full listing of contributors.
+~~
+~~Demoiselle Framework is an open source Java EE library designed to accelerate
+~~the development of transactional database Web applications.
+~~
+~~Demoiselle Framework is released under the terms of the LGPL license 3
+~~http://www.gnu.org/licenses/lgpl.html  LGPL License 3
+~~
+~~This file is part of Demoiselle Framework.
+~~
+~~Demoiselle Framework is free software: you can redistribute it and/or modify
+~~it under the terms of the GNU Lesser General Public License 3 as published by
+~~the Free Software Foundation.
+~~
+~~Demoiselle Framework is distributed in the hope that it will be useful,
+~~but WITHOUT ANY WARRANTY; without even the implied warranty of
+~~MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+~~GNU Lesser General Public License for more details.
+~~
+~~You should have received a copy of the GNU Lesser General Public License
+~~along with Demoiselle Framework.  If not, see <http://www.gnu.org/licenses/>.
+                                    ------
+                                    Documentação
+
+Documentação
+
+%{toc|section=1|fromDepth=1|toDepth=3}
+
+
+* {Base de dados}
+
+  O contactList possui 2 bases, uma para a aplicação e outra apenas para logs;
+  No arquivo persistence.xml do <<JPA>> você verifica as configurações utilizadas.
+  
+* {Regras de negócio}
+
+  As classes de negócio estão no pacote <business>. Nelas você encontrará exemplos
+  de como injetar o contexto de menssagens e o resourcebundle, além do uso do recurso
+  de transação habilitado pela anotação: <<@Transational>>.
+  
+* {Exceções}
+
+  No pacote eception se encontram alguns exemplos de exceção. O importante é observar
+  que para criar sua exceção integrada com o demoiselle basta anota-la com a anotação:
+  <<@ApplicationException(rollback = true, severity = SeverityType.WARN)>>. Informando se
+  ao ser lançada provocará um rollback da transação e qual o nível de mensagem que a camada 
+  de visão poderá tratar.
+  
+* {Inicialização}
+
+  No pacote <<init>> encontran-se exemplos de como inicializar recursos através da anotação
+  <<@Startup>>. O banco de dados está sendo inicializado desta maneira.
+
+* {Configuração}
+
+  No pacote <<config>> você aprenderá como carregar uma configuração. Por exemplo, se deve
+   ou não habilitar os logs da aplicação.

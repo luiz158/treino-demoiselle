@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Professor" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{professorMB.professor.id != null}">
+					<h:commandLink value="Alterar" action="#{professorMB.alterar}" title="Alterar Professor"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{professorMB.professor.id == null}">
+					<h:commandLink value="Salvar" action="#{professorMB.inserir}" title="Inserir novo professor" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{professorMB.cancelar}" title="Cancelar operação de edição"/>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<fieldset>
+					<legend>
+						<h:outputLabel value="Nome" for="professor_nome" />
+					</legend>
+					<t:inputText id="professor_nome" styleClass="inputText" value="#{professorMB.professor.nome}" tabindex="1" />
+				</fieldset>
+				<fieldset>
+					<legend> 
+						<h:outputLabel value="CPF" for="professor_cpf" /> 
+					</legend> 
+					<t:inputText id="professor_cpf" styleClass="inputText" value="#{professorMB.professor.cpf}" tabindex="2" />
+				</fieldset>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

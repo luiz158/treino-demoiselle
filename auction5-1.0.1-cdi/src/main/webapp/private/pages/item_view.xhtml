@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich" xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax" xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">
+	<ui:composition template="/public/templates/default.xhtml">
+		<ui:define name="body">
+			<h:form>
+				<demoiselle:useJs all="true">
+				</demoiselle:useJs>
+
+				<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass"
+					headerClass="richPanelHeaderClass">
+					<div>
+						<fieldset>
+							<legend>
+								<h:outputLabel for="itemMB_item_id" styleClass="outputLabel"
+									value="ID" />
+
+							</legend>
+							<t:outputText id="itemMB_item_id" value="#{itemMB.item.id}" />
+						</fieldset>
+
+						<fieldset>
+							<legend>
+								<h:outputLabel for="itemMB_item_description"
+									styleClass="outputLabel" value="Description" />
+
+							</legend>
+							<t:outputText id="itemMB_item_description" value="#{itemMB.item.description}" />
+						</fieldset>
+
+						<fieldset>
+							<legend>
+								<h:outputLabel for="itemMB_item_category_name"
+									styleClass="outputLabel" value="Category" />
+
+							</legend>
+							<t:outputText id="itemMB_item_category_name" value="#{itemMB.item.category.name}" />
+						</fieldset>
+
+					</div>
+				</rich:panel>
+
+				<div style="padding: 10px; text-align: right;">
+					<t:commandButton title="Ok" tabindex="1" action="#{itemMB.deleteConfirmed}"
+						styleClass="botaoComun" value="Ok" id="F1" />
+
+					<t:commandButton title="Cancelar" tabindex="2" action="#{itemMB.cancel}"
+						styleClass="botaoComun" value="Cancelar" id="F2" />
+
+				</div>
+
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</html>

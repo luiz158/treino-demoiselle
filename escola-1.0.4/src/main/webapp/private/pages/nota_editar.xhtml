@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">	
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">	
+		<h:form>		
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel  value="Nota"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{notaMB.nota.id != null}" >
+					<h:commandLink value="Alterar" action="#{notaMB.alterar}" title="Alterar Nota"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup  rendered="#{notaMB.nota.id == null}">
+					<h:commandLink value="Inserir" action="#{notaMB.inserir}" title="Inserir nova Nota"/>
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{notaMB.cancelar}"  title="Cancelar Operação"/>
+				</rich:toolBarGroup>
+			</rich:toolBar>
+		<rich:panel  styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+		
+		<fieldset >
+			<legend>
+				<h:outputLabel  value="Aluno" for="nota_aluno"/>
+			</legend>
+			<t:selectOneMenu id="nota_aluno" value="#{notaMB.nota.aluno.id}" tabindex="1" >
+				<f:selectItem itemLabel="" itemValue="" />		
+				<t:selectItems value="#{alunoMB.listaTodosAlunos}"  var="element" itemLabel="#{element.nome}" itemValue="#{element.id}"></t:selectItems>		
+			</t:selectOneMenu>
+		</fieldset>
+		
+		
+		<fieldset >
+		<legend>
+			<h:outputLabel  value="Disciplina" for="nota_disciplina"/>
+		</legend>	
+			<t:selectOneMenu id="nota_disciplina" value="#{notaMB.nota.disciplina.id}"  tabindex="2">
+				<f:selectItem itemLabel="" itemValue="" />		
+				<t:selectItems value="#{disciplinaMB.listaTodasDisciplinas}"  var="element" itemLabel="#{element.nome}" itemValue="#{element.id}"></t:selectItems>		
+			</t:selectOneMenu>
+		</fieldset>
+		
+		<fieldset >
+		<legend>
+			<h:outputLabel  value="Nota" for="nota_valor"/>
+		</legend>
+		<t:inputText  id="nota_valor" styleClass="inputText" value="#{notaMB.nota.valor}"  tabindex="3"/>
+		</fieldset>
+
+		</rich:panel>
+		</h:form>		
+	</ui:define>	
+</ui:composition>
+</html>

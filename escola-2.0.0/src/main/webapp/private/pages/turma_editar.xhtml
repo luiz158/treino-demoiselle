@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">	
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{turmaMB.turma.id != null}">
+					<h:commandLink value="Alterar" action="#{turmaMB.alterar}" title="Alterar Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup rendered="#{turmaMB.turma.id == null}">
+					<h:commandLink value="Inserir" action="#{turmaMB.inserir}" title="Inserir nova Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{turmaMB.cancelar}" title="Cancelar Operação" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<div>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Nome" for="turma_nome" />
+						</legend>
+						<t:inputText id="turma_nome" styleClass="inputText" value="#{turmaMB.turma.nome}" tabindex="1" />
+					</fieldset>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Local" for="turma_local" />
+						</legend>
+						<t:inputText id="turma_local" styleClass="inputText" value="#{turmaMB.turma.local}" tabindex="2" />
+					</fieldset>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Horário" for="turma_horario" />
+						</legend>
+						<t:inputText id="turma_horario" styleClass="inputText" value="#{turmaMB.turma.horario}" tabindex="3" />
+					</fieldset>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Número máximo de alunos" for="turma_lotacao" />
+						</legend>
+						<t:inputText id="turma_lotacao" styleClass="inputText" value="#{turmaMB.turma.lotacao}" tabindex="4" />
+					</fieldset>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Professor" for="turma_professor" />
+						</legend>
+						<t:selectOneMenu id="turma_professor" value="#{turmaMB.turma.professor.id}" tabindex="5">
+							<f:selectItem itemLabel="" itemValue="" />
+							<t:selectItems value="#{turmaMB.professores}" var="element" itemLabel="#{element.nome}" itemValue="#{element.id}" />
+						</t:selectOneMenu>
+					</fieldset>
+					<fieldset>
+						<legend>
+							<h:outputLabel value="Disciplina" for="turma_disciplina" />
+						</legend>
+						<t:selectOneMenu id="turma_disciplina" value="#{turmaMB.turma.disciplina.id}" tabindex="6">
+							<f:selectItem itemLabel="" itemValue="" />
+							<t:selectItems value="#{turmaMB.disciplinas}" var="element" itemLabel="#{element.nome}" itemValue="#{element.id}" />
+						</t:selectOneMenu>
+					</fieldset>
+				</div>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

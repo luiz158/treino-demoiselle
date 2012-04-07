@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:demoiselle="http://www.frameworkdemoiselle.gov.br">	
+<ui:composition template="/public/templates/default.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<rich:toolBar height="34" itemSeparator="line" styleClass="richPanelBodyClass">
+				<rich:toolBarGroup>
+					<h:outputLabel value="Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Excluir" action="#{turmaMB.excluir}" tabindex="10" title="Remover Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Alterar" action="#{turmaMB.preAlterar}" tabindex="10" title="Alterar Turma" />
+				</rich:toolBarGroup>
+				<rich:toolBarGroup>
+					<h:commandLink value="Voltar" action="#{turmaMB.cancelar}" tabindex="12" title="Cancelar Operação" />
+				</rich:toolBarGroup>
+			</rich:toolBar>
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<div>
+					<fieldset>
+						<legend>Nome</legend>
+						<t:outputText value="#{turmaMB.turma.nome}" />
+					</fieldset>
+					<fieldset>
+						<legend>Local</legend>
+						<t:outputText value="#{turmaMB.turma.local}" />
+					</fieldset>
+					<fieldset>
+						<legend>Horário</legend>
+						<t:outputText value="#{turmaMB.turma.horario}" />
+					</fieldset>
+					<fieldset>
+						<legend>Número máximo de alunos</legend>
+						<t:outputText value="#{turmaMB.turma.lotacao}" />
+					</fieldset>
+					<fieldset>
+						<legend>Professor</legend>
+						<t:outputText value="#{turmaMB.turma.professor.nome}" />
+					</fieldset>
+					<fieldset>
+						<legend>Disciplina</legend>
+						<t:outputText value="#{turmaMB.turma.disciplina.nome}" />
+					</fieldset>
+				</div>
+			</rich:panel>
+			<rich:panel styleClass="richPanelStyleClass" bodyClass="richPanelBodyClass" headerClass="richPanelHeaderClass">
+				<rich:dataTable width="100%" styleClass="richDataTableStyleClass"
+					value="#{turmaMB.turma.listaAluno}" headerClass="richDataTableHeaderClass"
+					rowClasses="richDataTableRowClassFirst, richDataTableRowClassSecond"
+					columnClasses="richDataTableColumnClass" var="aluno" rowKeyVar="row">
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value=" " />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{row+1}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<t:outputText value="Lista de Alunos Matriculados" />
+						</f:facet>
+						<t:outputText styleClass="outputText" value="#{aluno.nome}" />
+					</rich:column>
+				</rich:dataTable>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
